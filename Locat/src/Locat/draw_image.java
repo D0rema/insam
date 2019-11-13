@@ -7,39 +7,39 @@ import javax.swing.ImageIcon;
 
 public class draw_image {
 	Image img = new ImageIcon("images1/rpg2.png").getImage();
-	Image map = new ImageIcon("images1/stage1.png").getImage();// *�̹��� ����
+	Image map = new ImageIcon("images1/stage1.png").getImage();// *이미지 수정
 	Image check = new ImageIcon("images1/check.png").getImage();
 	Image dog = new ImageIcon("images1/smdogL.png").getImage();
 	Image heart = new ImageIcon("images1/life.png").getImage();
 	Image heart_x = new ImageIcon("images1/life_x.png").getImage();
-
+	
 	obstacle dg1 = new obstacle(150, 155);
 	obstacle dg2 = new obstacle(550, 110);
-	// ���� �̹��� �̸��� �ٷ� rpg.png�Դϴ�. �̹����� �ҷ��ɴϴ�
-	// ������۸��� �Դϴ�.
+	// 위에 이미지 이름이 바로 rpg.png입니다. 이미지를 불러옵니다
+	// 더블버퍼링용 입니다.
 	Graphics gc;
 
 	private cat cat = null;
 
-	public void paint(Graphics g, Image buffimg, ImageObserver Frame) { // ������۸��� ����մϴ�.
+	public void paint(Graphics g, Image buffimg, ImageObserver Frame) { // 더블버퍼링을 사용합니다.
 
 		gc = buffimg.getGraphics();
-		draw_background(Frame); // ����� �׸��� �Լ�
-		checkmark(Frame, 20, 230, 0); // Ư��ȿ���� �׸��� �Լ�
+		draw_background(Frame); // 배경을 그리는 함수
+		checkmark(Frame, 20, 230, 0); // 특수효과를 그리는 함수
 		checkmark(Frame, 400, 40, 1);
 		checkmark(Frame, 750, 120, 2);
-		checkmark(Frame, 740,340,3);
+		checkmark(Frame, 740, 340, 3);
 		draw_dog1(Frame, dg1.ox, dg1.oy, 100, dg1);
 		draw_dog1(Frame, dg2.ox, dg2.oy, 70, dg2);
-		draw_life(Frame, cat.lck1, 740, 30);
-		draw_life(Frame, cat.lck2, 695, 30);
-		draw_life(Frame, cat.lck3, 650, 30);
+		draw_life(Frame, cat.lck[0], 740, 30);
+		draw_life(Frame, cat.lck[1], 695, 30);
+		draw_life(Frame, cat.lck[2], 650, 30);
 		update(g, buffimg, Frame);
 
 	}
 
 	public void update(Graphics g, Image buffimg, ImageObserver Frame) {
-		// ���� ���۸��� �̿��� ���ۿ� �׷������� �����ɴϴ�.
+		// 더블 버퍼링을 이용해 버퍼에 그려진것을 가져옵니다.
 		DrawImg(Frame);
 
 		g.drawImage(buffimg, 0, 0, Frame);
@@ -56,23 +56,23 @@ public class draw_image {
 		// gc.drawString(Integer.toString(on_bottom),500, 150);
 		// gc.drawString(Integer.toString(on_flat),350, 150);
 
-		// ���� �ܼ��� ���ѷ��� ���뿩�ο� �ɸ��� ���� üũ�� ����
-		// ������ ���鼭 �׽�Ʈ�� �뵵�� ���̴� �ؽ�Ʈ ǥ���Դϴ�.
+		// 위는 단순히 무한루프 적용여부와 케릭터 방향 체크를 위해
+		// 눈으로 보면서 테스트할 용도로 쓰이는 텍스트 표출입니다.
 
 		MoveImage(img, cat.x, cat.y, 50, 75, Frame);
-		// �ɸ��͸� �ɾ�� ����� ���� �߰��� ���� �޼ҵ� �Դϴ�.
+		// 케릭터를 걸어가게 만들기 위해 추가로 만든 메소드 입니다.
 
 	}
 
 	public void MoveImage(Image img, int x, int y, int width, int height, ImageObserver Frame) {
-		// �ɸ��� �̹���, �ɸ��� ��ġ, �ɸ��� ũ�⸦ �޽��ϴ�.
-		// ���� ���� �̿��ؼ� ���� �̹���Ĩ�¿��� �ɸ��͸� �߶�
-		// ǥ���ϵ��� ����ϴ� �޼ҵ� �Դϴ�.
+		// 케릭터 이미지, 케릭터 위치, 케릭터 크기를 받습니다.
+		// 받은 값을 이용해서 위의 이미지칩셋에서 케릭터를 잘라내
+		// 표출하도록 계산하는 메소드 입니다.
 
 		gc.setClip(x, y, width, height);
-		// ���� ��ǥ���� �ɸ����� ũ�� ��ŭ �̹����� �߶� �׸��ϴ�.
+		// 현재 좌표에서 케릭터의 크기 만큼 이미지를 잘라 그립니다.
 
-		if (cat.playerMove) { // �ɸ����� ������ ���θ� �Ǵ��մϴ�.
+		if (cat.playerMove) { // 케릭터의 움직임 여부를 판단합니다.
 			if (cat.cnt / 10 % 4 == 0) {
 				gc.drawImage(img, x - (width * 0), y - (height * cat.moveStatus), Frame);
 
@@ -85,12 +85,12 @@ public class draw_image {
 			} else if (cat.cnt / 10 % 4 == 3) {
 				gc.drawImage(img, x - (width * 1), y - (height * cat.moveStatus), Frame);
 			}
-			// �ɸ����� ���⿡ ���� �ɾ�� ����� ���ϴ�
-			// �ɸ��� �̹����� �ð����� �̿��� ���������� �׸��ϴ�.
+			// 케릭터의 방향에 따라 걸어가는 모션을 취하는
+			// 케릭터 이미지를 시간차를 이용해 순차적으로 그립니다.
 
 		} else {
 			gc.drawImage(img, x - (width * 1), y - (height * cat.moveStatus), Frame);
-			// �ɸ��Ͱ� �������� ������ ������ �ɸ��͸� �׸��ϴ�.
+			// 케릭터가 움직이지 않으면 정지한 케릭터를 그립니다.
 
 		}
 	}
@@ -108,12 +108,12 @@ public class draw_image {
 			else
 				cat.x = cat.x + 50;
 
-			if (cat.lck1)
-				cat.lck1 = false;
-			else if (cat.lck2)
-				cat.lck2 = false;
+			if (cat.lck[0])
+				cat.lck[0] = false;
+			else if (cat.lck[1])
+				cat.lck[1] = false;
 			else
-				cat.lck3 = false;
+				cat.lck[2] = false;
 		}
 		if ((cat.cnt / distance) % 2 == 0) {
 			dg.ox = dg.ox + 2;
@@ -139,6 +139,18 @@ public class draw_image {
 			gc.drawImage(heart, lx, ly, Frame);
 		} else
 			gc.drawImage(heart_x, lx, ly, Frame);
+	}
+
+	public void setInit() {
+
+		cat.x = 20;
+		cat.y = 400;
+		for (int i = 0; i < 4; i++) {
+			cat.ck[i] = true;
+		}
+		for (int j = 0; j < 3; j++) {
+			cat.lck[j] = true;
+		}
 	}
 
 }

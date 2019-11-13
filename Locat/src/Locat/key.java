@@ -3,20 +3,20 @@ package Locat;
 import java.awt.event.KeyEvent;
 
 public class key {
-	boolean keyUp = false; // Ű �Է¹޴°� �Է¹����� true�� �ٲ�
+	boolean keyUp = false; // 키 입력받는거 입력받으면 true로 바뀜
 	boolean keyDown = false;
 	boolean keyLeft = false;
 	boolean keyRight = false;
-	boolean jump = false; // ���� ����
+	boolean jump = false; // 여기 까지
 
-//	int jump_Time_Schedule = 0; // �ѹ��ٸ� �����ð���ŭ ���� �Ұ���
+//	int jump_Time_Schedule = 0; // 한번뛰면 일정시간만큼 점프 불가능
 
 	public void keyProcess() {
-		// ���⼭�� �ܼ� �ɸ��Ͱ� �̵��ϴ� ��ǥ ����
-		// �ɸ����� ������ ���ι� ������ üũ �մϴ�.
+		// 여기서는 단순 케릭터가 이동하는 좌표 말고도
+		// 케릭터의 움직임 여부및 방향을 체크 합니다.
 		cat.playerMove = false;
 
-		// up�� down�� ��ٸ������� ����ǵ���
+		// up과 down은 사다리에서만 적용되도록
 		if (keyUp && cat.not_key != 1 && Ladder.on_Ladder_Flag) {
 			Ladder.using_Ladder = true;
 			cat.playerMove = true;
@@ -53,10 +53,10 @@ public class key {
 			// cat.moveStatus = 1;
 			cat.playerMove = true;
 
-			if (cat.cnt < cat.jp1) { // ī��Ʈ�� ������ jp1��ŭ�� �ð��� �ö�
-				cat.y -= 12; // �ӵ��� ���Ҽ�����
+			if (cat.cnt < cat.jp1) {  // 카운트가 지정된 jp1만큼의 시간만 올라감
+				cat.y -= 12; // 속도를 정할수있음
 			}
-			if (cat.cnt > cat.jp1) { // �� �ö󰡸� �Ʒ� try_jump�� false��Ű�鼭 �߷� ����
+			if (cat.cnt > cat.jp1) { // 다 올라가면 아래 try_jump를 false시키면서 중력 적용
 				jump = false;
 				cat.try_jump = false;
 			}
@@ -89,9 +89,9 @@ public class key {
 			break;
 		case KeyEvent.VK_SPACE:
 			if (cat.cnt > cat.jp2) {
-				cat.jp1 = cat.cnt + 12; // ����Ű�� ������ cnt�� 20�ö󰥸�ŭ �ö�
-				cat.jp2 = cat.cnt + 40;// ���� �̻��
-				cat.try_jump = true; // �߷��� �������Ŵ
+				cat.jp1 = cat.cnt + 12; // 점프키를 누르면 cnt가 20올라갈만큼 올라감
+				cat.jp2 = cat.cnt + 40;// 현재 미사용
+				cat.try_jump = true; // 중력을 미적용시킴
 				jump = true;
 				break;
 			}

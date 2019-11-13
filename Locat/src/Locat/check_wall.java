@@ -4,16 +4,16 @@ public class check_wall {
 	// int wall_count = 5;
 	// int wall[][] = new int[wall_count][4];
 	
-	int flat_count = 9;// �÷��� ����
-	int flat[][] = new int[flat_count][4];// �÷��� �Լ� [0] ������ ����x�� [1] ������ �� x�� [2] ������ y�� [3] �켱 y���ε� ���� ��������� ����
+	int flat_count = 9;// 플랫의 갯수
+	int flat[][] = new int[flat_count][4];// 플랫의 함수 [0] 발판의 시작x값 [1] 발판의 끝 x값 [2] 발판의 y값 [3] 우선 y값인데 미정 사라질수도 있음
 
-	public int on_flat = 0;// ������ ������ ture�� �Ǿ� �ٴ��� ������ y������ ����
-	public int on_bottom = 0; // �⺻���� �ٴ� ���⼭�� 472�� ����
+	public int on_flat = 0;// 발판을 밟을때 ture가 되어 바닥이 발판의 y값으로 변함
+	public int on_bottom = 0; // 기본적인 바닥 여기서는 472로 고정
 
-	public int ff; // ���� ��� �ִ� ������ y���� �����ϱ� ���� �ʿ��� �Լ�
+	public int ff; // 현재 밟고 있는 발판의 y값을 지정하기 위해 필요한 함수
 
 	public check_wall() {
-		flat[0][0] = 144;// ���� �׽�Ʈ �ϱ� ���� ���� ����
+		flat[0][0] = 144;// 현재 테스트 하기 위해 만든 발판
 		flat[0][1] = 288;
 		flat[0][2] = 316;
 		flat[0][3] = 400;
@@ -57,22 +57,22 @@ public class check_wall {
 		flat[8][1] = 750;
 		flat[8][2] = 328;
 		flat[8][3] = 400;
-	}
+		}
 
 	public void wall_Check() {
 		is_bottom();
 		in_flat();
 	}
 
-	public void is_bottom() { // �߷��� ����� ���� �Լ�
+	public void is_bottom() { // 중력을 만들기 위한 함수
 		System.out.println(on_bottom);
-		if (on_flat == 0) { // ���ǿ� ���� �������� �׻� �ٴ��� 472
-
+		if (on_flat == 0) { // 발판에 닿지 않을때는 항상 바닥은 472
+			
 			cat.g_y = 472;
 		}
-		if (!cat.try_jump || Ladder.on_Ladder_Flag) { // �����Ҷ��� �߷� ���� x
-			if (cat.y >= cat.g_y) { // g_y �����϶� �ٲ�� �ֱ⶧���� ������ ����
-				on_bottom = 1; // ĳ���Ͱ� �ٴڿ� ������� 1
+		if (!cat.try_jump || Ladder.on_Ladder_Flag) { // 점프할때는 중력 적용 x
+			if (cat.y >= cat.g_y) { // g_y 발판일때 바뀔수 있기때문에 변수로 생성
+				on_bottom = 1; // 캐릭터가 바닥에 닿았을때 1
 			} else if (cat.y < cat.g_y && Ladder.on_Ladder_Flag) {
 				if(Ladder.using_Ladder)
 				on_bottom = 1;
@@ -81,26 +81,26 @@ public class check_wall {
 			} else {
 				on_bottom = 0;
 			}
-			if (on_bottom == 0) { // �ٴڿ� ���� �ʾ������� �׻� ������
+			if (on_bottom == 0) { // 바닥에 닿지 않았을때는 항상 떨어짐
 				Ladder.using_Ladder = false;
 				cat.y += 12;
 			}
 		}
 	}
 
-	public void in_flat() { // �����϶� üũ�ϴ� �Լ�
-		for (int i = 0; i < flat_count; i++) { // ��� ������ üũ
-			if (flat[i][0] < cat.x && flat[i][1] > cat.x && flat[i][2] == cat.y) { // ���� ĳ������
-																											// ��ǥ�� ���� ��ǥ
-																											// �ȿ� �ִ��� üũ
-																											// i�� ��� ����
-																											// üũ
+	public void in_flat() {  // 발판일때 체크하는 함수
+		for (int i = 0; i < flat_count; i++) {  // 모든 발판을 체크
+			if (flat[i][0] < cat.x && flat[i][1] > cat.x && flat[i][2] == cat.y) { // 현재 캐릭터의
+                // 좌표가 발판 좌표
+                // 안에 있는지 체크
+                // i로 모든 발판
+                // 체크
 
-				on_flat = 1; // ���� ��ǥ �ȿ� ������ ������ ��� ������ 1
-				ff = i; // �׶��� ���� ������ �Ʒ��� ���
-				cat.g_y = flat[ff][2]; // ���� ����ִ� ������ y���� �ٴ����� ���
+				on_flat = 1;  // 발판 좌표 안에 있으면 발판을 밟고 있을때 1
+				ff = i;  // 그때의 값을 저장해 아래에 사용
+				cat.g_y = flat[ff][2]; // 현재 밝고있는 발판의 y값을 바닥으로 사용
 			} else if (flat[ff][0] > cat.x || flat[ff][1] < cat.x) {
-				on_flat = 0; // ����(ff�� ����) ��� �ִ� ������ x���� ����� ������ ��� ���� ���������� ó��
+				on_flat = 0;// 현재(ff로 구분) 밟고 있는 발판의 x값에 벗어나면 발판을 밟고 있지 않은것으로 처리
 			}
 		}
 	}

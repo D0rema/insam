@@ -10,11 +10,10 @@ public class Ladder {
 	public static int y_Under;
 
 	public Ladder() {
-		ladders[0][0] = 176; // ��ٸ� ���� x��ǥ
-		ladders[0][1] = 192; // ��ٸ� �� x��ǥ
-		ladders[0][2] = 316; // ��ٸ� ���� y��ǥ
-		ladders[0][3] = 448; // ��ٸ� �� y��ǥ
-
+		ladders[0][0] = 176; // 사다리 시작 x좌표
+		ladders[0][1] = 192; // 사다리 끝 x좌표
+		ladders[0][2] = 316; // 사다리 시작 y좌표
+		ladders[0][3] = 448; // 사다리 끝 y좌표
 		ladders[1][0] = 256;
 		ladders[1][1] = 268;
 		ladders[1][2] = 148;
