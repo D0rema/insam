@@ -31,9 +31,9 @@ public class draw_image {
 		checkmark(Frame, 740,340,3);
 		draw_dog1(Frame, dg1.ox, dg1.oy, 100, dg1);
 		draw_dog1(Frame, dg2.ox, dg2.oy, 70, dg2);
-		draw_life(Frame, moving_test.lck1, 740, 30);
-		draw_life(Frame, moving_test.lck2, 695, 30);
-		draw_life(Frame, moving_test.lck3, 650, 30);
+		draw_life(Frame, moving_test.lck[0], 740, 30);
+		draw_life(Frame, moving_test.lck[1], 695, 30);
+		draw_life(Frame, moving_test.lck[2], 650, 30);
 		update(g, buffimg, Frame);
 
 	}
@@ -108,12 +108,12 @@ public class draw_image {
 			else
 				moving_test.x = moving_test.x + 50;
 
-			if (moving_test.lck1)
-				moving_test.lck1 = false;
-			else if (moving_test.lck2)
-				moving_test.lck2 = false;
+			if (moving_test.lck[0])
+				moving_test.lck[0] = false;
+			else if (moving_test.lck[1])
+				moving_test.lck[1] = false;
 			else
-				moving_test.lck3 = false;
+				moving_test.lck[2] = false;
 		}
 		if ((moving_test.cnt / distance) % 2 == 0) {
 			dg.ox = dg.ox + 2;
@@ -139,6 +139,17 @@ public class draw_image {
 			gc.drawImage(heart, lx, ly, Frame);
 		} else
 			gc.drawImage(heart_x, lx, ly, Frame);
+	}
+	public void setInit() {
+		
+		moving_test.x=20;
+		moving_test.y=400;
+		for(int i=0;i<4;i++) {
+			moving_test.ck[i]=true;
+		}
+		for(int j=0;j<3;j++) {
+			moving_test.lck[j]=true;
+		}
 	}
 
 }

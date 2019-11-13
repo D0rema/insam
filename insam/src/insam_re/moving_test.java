@@ -18,7 +18,7 @@ public class moving_test {
 	public static int jp1, jp2; // 점프 cnt를 계산하기 위한 값
 	public static boolean try_jump = false;
 	public static boolean[] ck= {true,true,true,true};
-	public static boolean lck1 = true, lck2 = true, lck3 = true;
+	public static boolean[] lck = {true, true, true};
 	public static int not_key = 0;
 	public static int char_lo = 0;
 //키가 입력받아서 캐릭터가 움직이는 상황에는 true로 바뀜
@@ -30,7 +30,6 @@ class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 	key k1 = new key();
 
 	draw_image d1 = new draw_image();
-	draw_image d2 = new draw_image();
 	check_wall w1 = new check_wall();
 	Ladder l = new Ladder();
 	// puzzle_master z1 = new puzzle_master();
@@ -120,7 +119,7 @@ class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 	}
 
 	public boolean lck_check() {
-		if (moving_test.lck3)
+		if (moving_test.lck[2])
 			return false;
 		else
 			return true;
@@ -153,6 +152,10 @@ class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 //is_bottom(); // 중력과 바닥을 체크하는 함수 ,아래 w1. check_wall()로 통합 할수도있음
 				w1.wall_Check();
 				if (lck_check()) {
+					d1.setInit();
+				}
+				if(ck_check()) {
+					System.exit(0);
 				}
 				// puzzle_master();
 			} catch (Exception e) {
