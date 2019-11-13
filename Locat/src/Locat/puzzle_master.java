@@ -2,7 +2,6 @@ package Locat;
 
 public class puzzle_master {
 	private int mark[][] = new int[10][4];
-
 	public void find_load() {
 		mark[0] = new int[] { 132, 164, 100, 132 };
 		mark[1] = new int[] { 328, 360, 100, 132 };
@@ -16,9 +15,9 @@ public class puzzle_master {
 		mark[9] = new int[] { 484, 516, 416, 448 };
 
 		for (int i = 0; i < 10; i++) {
-			if (gameFrame.x > mark[i][0] && gameFrame.x < mark[i][1] && gameFrame.y > mark[i][2]
-					&& gameFrame.y < mark[i][3]) {
-				gameFrame.char_lo = i;
+			if (cat.x > mark[i][0] && cat.x < mark[i][1] && cat.y > mark[i][2]
+					&& cat.y < mark[i][3]) {
+				cat.char_lo = i;
 			}
 		}
 	}
