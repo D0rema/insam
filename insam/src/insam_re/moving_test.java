@@ -17,7 +17,7 @@ public class moving_test {
 	public static int moveStatus; // 케릭터가 어디를 바라보는지 방향을 받을 변수
 	public static int jp1, jp2; // 점프 cnt를 계산하기 위한 값
 	public static boolean try_jump = false;
-	public static boolean ck1 = true, ck2 = true, ck3 = true;
+	public static boolean[] ck= {true,true,true,true};
 	public static boolean lck1 = true, lck2 = true, lck3 = true;
 	public static int not_key = 0;
 	public static int char_lo = 0;
@@ -113,7 +113,7 @@ class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 	}
 
 	public boolean ck_check() {
-		if (moving_test.ck1 || moving_test.ck2 || moving_test.ck3)
+		if (moving_test.ck[0] || moving_test.ck[1] || moving_test.ck[2]||moving_test.ck[3])
 			return false;
 		else
 			return true;

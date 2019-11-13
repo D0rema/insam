@@ -7,37 +7,35 @@ import javax.swing.ImageIcon;
 
 public class draw_image {
 	Image img = new ImageIcon("images/rpg2.png").getImage();
-	Image map = new ImageIcon("images/stage1.png").getImage();//*이미지 수정
+	Image map = new ImageIcon("images/stage1.png").getImage();// *이미지 수정
 	Image check = new ImageIcon("images/check.png").getImage();
 	Image dog = new ImageIcon("images/smdogL.png").getImage();
 	Image heart = new ImageIcon("images/life.png").getImage();
 	Image heart_x = new ImageIcon("images/life_x.png").getImage();
-	
-	obstacle dg1=new obstacle(150,155);
-	obstacle dg2=new obstacle(550,110);
+
+	obstacle dg1 = new obstacle(150, 155);
+	obstacle dg2 = new obstacle(550, 110);
 	// 위에 이미지 이름이 바로 rpg.png입니다. 이미지를 불러옵니다
 	// 더블버퍼링용 입니다.
 	Graphics gc;
 
 	private moving_test moving_test = null;
 
-	
- 	public void paint(Graphics g, Image buffimg, ImageObserver Frame) { // 더블버퍼링을 사용합니다.
+	public void paint(Graphics g, Image buffimg, ImageObserver Frame) { // 더블버퍼링을 사용합니다.
 
 		gc = buffimg.getGraphics();
 		draw_background(Frame); // 배경을 그리는 함수
-		checkmark1(Frame,20,230); // 특수효과를 그리는 함수
-		checkmark2(Frame,400,40);
-		checkmark3(Frame,750,120);
-		draw_dog1(Frame, dg1.ox,dg1.oy);
-		draw_dog2(Frame, dg2.ox,dg2.oy);
-		draw_life(Frame, moving_test.lck1,740,30);
-		draw_life(Frame, moving_test.lck2,695,30);
-		draw_life(Frame, moving_test.lck3,650,30);
+		checkmark(Frame, 20, 230, 0); // 특수효과를 그리는 함수
+		checkmark(Frame, 400, 40, 1);
+		checkmark(Frame, 750, 120, 2);
+		checkmark(Frame, 740,340,3);
+		draw_dog1(Frame, dg1.ox, dg1.oy, 100, dg1);
+		draw_dog1(Frame, dg2.ox, dg2.oy, 70, dg2);
+		draw_life(Frame, moving_test.lck1, 740, 30);
+		draw_life(Frame, moving_test.lck2, 695, 30);
+		draw_life(Frame, moving_test.lck3, 650, 30);
 		update(g, buffimg, Frame);
-		
 
-		
 	}
 
 	public void update(Graphics g, Image buffimg, ImageObserver Frame) {
@@ -96,93 +94,51 @@ public class draw_image {
 
 		}
 	}
+
 	public void draw_background(ImageObserver Frame) {
 		gc.clearRect(0, 0, 800, 600);
 		gc.drawImage(map, 0, 0, Frame);
 	}
-	public void draw_dog1(ImageObserver Frame, int dx, int dy) {
-		if ((dx-10<=moving_test.x && dx+30>=moving_test.x) && 
-				(dy-10<=moving_test.y && dy+10>=moving_test.y)) {
-			if(moving_test.x<=dx)moving_test.x=moving_test.x-50;
-			else 
-				moving_test.x=moving_test.x+50;
-			
-			if(moving_test.lck1)
-				moving_test.lck1=false;
-			else if(moving_test.lck2)
-				moving_test.lck2=false;
-			else moving_test.lck3=false;
-		}
-		if((moving_test.cnt/110)%2==0) {
-			dg1.ox=dg1.ox+2;
-		}
-		else
-			dg1.ox=dg1.ox-2;
-		gc.drawImage(dog, dx, dy, Frame);
-	}
-	public void draw_dog2(ImageObserver Frame, int dx, int dy) {
-		if ((dx-10<=moving_test.x && dx+30>=moving_test.x) && 
-				(dy-10<=moving_test.y && dy+10>=moving_test.y)) {
-			if(moving_test.x<=dx)moving_test.x=moving_test.x-50;
+
+	public void draw_dog1(ImageObserver Frame, int dx, int dy, int distance, obstacle dg) {
+		if ((dx - 10 <= moving_test.x && dx + 30 >= moving_test.x)
+				&& (dy - 10 <= moving_test.y && dy + 10 >= moving_test.y)) {
+			if (moving_test.x <= dx)
+				moving_test.x = moving_test.x - 50;
 			else
-				moving_test.x=moving_test.x+50;
-			
-			if(moving_test.lck1)
-				moving_test.lck1=false;
-			else if(moving_test.lck2)
-				moving_test.lck2=false;
-			else moving_test.lck3=false;
+				moving_test.x = moving_test.x + 50;
+
+			if (moving_test.lck1)
+				moving_test.lck1 = false;
+			else if (moving_test.lck2)
+				moving_test.lck2 = false;
+			else
+				moving_test.lck3 = false;
 		}
-		if((moving_test.cnt/70)%2==0) {
-			dg2.ox=dg2.ox+3;
-		}
-		else
-			
-			dg2.ox=dg2.ox-3;
+		if ((moving_test.cnt / distance) % 2 == 0) {
+			dg.ox = dg.ox + 2;
+		} else
+			dg.ox = dg.ox - 2;
 		gc.drawImage(dog, dx, dy, Frame);
 	}
 
-	public void checkmark1(ImageObserver Frame,int cx,int cy) {
-		if ((cx-10<=moving_test.x && cx+10>=moving_test.x) && 
-				(cy-10<=moving_test.y && cy+10>=moving_test.y)) {
-			moving_test.ck1 = false;
+	public void checkmark(ImageObserver Frame, int cx, int cy, int ckindex) {
+		if ((cx - 15 <= moving_test.x && cx + 15 >= moving_test.x)
+				&& (cy - 15 <= moving_test.y && cy + 15 >= moving_test.y)) {
+			moving_test.ck[ckindex] = false;
 
 		}
 
-		if (moving_test.ck1 == true) {
+		if (moving_test.ck[ckindex] == true) {
 			gc.drawImage(check, cx, cy, Frame);
 		}
 	}
-	
-	public void checkmark2(ImageObserver Frame,int cx,int cy) {
-		if ((cx-15<=moving_test.x && cx+15>=moving_test.x) && 
-				(cy-15<=moving_test.y && cy+15>=moving_test.y)) {
-			moving_test.ck2 = false;
 
-		}
-
-		if (moving_test.ck2 == true) {
-			gc.drawImage(check, cx, cy, Frame);
-		}
+	public void draw_life(ImageObserver Frame, boolean lck, int lx, int ly) {
+		if (lck) {
+			gc.drawImage(heart, lx, ly, Frame);
+		} else
+			gc.drawImage(heart_x, lx, ly, Frame);
 	}
-	
-	public void checkmark3(ImageObserver Frame,int cx,int cy) {
-		if ((cx-10<=moving_test.x && cx+10>=moving_test.x) && 
-				(cy-10<=moving_test.y && cy+10>=moving_test.y)) {
-			moving_test.ck3 = false;
-			
 
-		}
-
-		if (moving_test.ck3 == true) {
-			gc.drawImage(check, cx, cy, Frame);
-		}
-	}
-	public void draw_life(ImageObserver Frame,boolean lck , int lx, int ly) {
-		if(lck) {
-			gc.drawImage(heart,lx, ly,Frame );
-		}
-		else
-			gc.drawImage(heart_x,lx,ly,Frame);
-	}
 }
