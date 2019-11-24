@@ -11,6 +11,11 @@ public class key {
 
 //	int jump_Time_Schedule = 0; // 한번뛰면 일정시간만큼 점프 불가능
 
+	/**
+	 * Key Calibration
+	 * 
+	 * @author JiSeongChoi
+	 */
 	public void keyProcess() {
 		// 여기서는 단순 케릭터가 이동하는 좌표 말고도
 		// 케릭터의 움직임 여부및 방향을 체크 합니다.

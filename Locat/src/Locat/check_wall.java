@@ -1,17 +1,30 @@
 package Locat;
 
+/**
+ * class to check flat and if character leaves map
+ *
+ * @author JiSeongChoi
+ */
 public class check_wall {
 	// int wall_count = 5;
 	// int wall[][] = new int[wall_count][4];
-	
+	/** total of flats */
 	int flat_count = 9;// 플랫의 갯수
+	/** flatArray */
 	int flat[][] = new int[flat_count][4];// 플랫의 함수 [0] 발판의 시작x값 [1] 발판의 끝 x값 [2] 발판의 y값 [3] 우선 y값인데 미정 사라질수도 있음
 
+	/** variable for checking if character is floating air */
 	public int on_flat = 0;// 발판을 밟을때 ture가 되어 바닥이 발판의 y값으로 변함
+	/** variable for checking if character is on flat */
 	public int on_bottom = 0; // 기본적인 바닥 여기서는 472로 고정
-
+	/** y value of current flat */
 	public int ff; // 현재 밟고 있는 발판의 y값을 지정하기 위해 필요한 함수
 
+	/**
+	 * set position of flats
+	 * 
+	 * @author JiSeongChoi
+	 */
 	public check_wall() {
 		flat[0][0] = 144;// 현재 테스트 하기 위해 만든 발판
 		flat[0][1] = 288;
@@ -59,15 +72,23 @@ public class check_wall {
 		flat[8][3] = 400;
 		}
 
+	/**
+	 * check if character is floating air
+	 * 
+	 * @author JiSeongChoi
+	 */
 	public void wall_Check() {
 		is_bottom();
 		in_flat();
 	}
 
+	/**
+	 * check if gravity is needed
+	 * 
+	 * @author JiSeongChoi
+	 */
 	public void is_bottom() { // 중력을 만들기 위한 함수
-		System.out.println(on_bottom);
 		if (on_flat == 0) { // 발판에 닿지 않을때는 항상 바닥은 472
-			
 			cat.g_y = 472;
 		}
 		if (!cat.try_jump || Ladder.on_Ladder_Flag) { // 점프할때는 중력 적용 x
@@ -88,6 +109,11 @@ public class check_wall {
 		}
 	}
 
+	/**
+	 * check if character is on flat 
+	 * 
+	 * @author JiSeongChoi
+	 */
 	public void in_flat() {  // 발판일때 체크하는 함수
 		for (int i = 0; i < flat_count; i++) {  // 모든 발판을 체크
 			if (flat[i][0] < cat.x && flat[i][1] > cat.x && flat[i][2] == cat.y) { // 현재 캐릭터의
@@ -105,6 +131,12 @@ public class check_wall {
 		}
 	}
 
+	/**	
+	 * check if character leaves map 
+	 *
+	 * @author JiSeongChoi
+	 */
+	
 	public void on_wall() {
 		if (cat.y <= 0) {
 			cat.playerMove = false;

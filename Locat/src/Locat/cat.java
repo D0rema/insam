@@ -4,16 +4,29 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.image.ImageObserver;
-
+/**
+ * catStage class
+ * 
+ * @author All
+ */
 public class cat {
+	/** variable for checking character direction */
 	public static boolean playerMove = false;
+	/** character position */
 	public static int x, y; // 케릭터의 현재 좌표를 받을 변수
-	public static int g_x, g_y;  // 중력을 체크하기 위한 좌표
+	/** gravity variable */
+	public static int g_y;  // 중력을 체크하기 위한 좌표
+	/** thread time counter */
 	public static int cnt; // 무한 루프를 카운터 하기 위한 변수
+	/** variable for checking character direction */
 	public static int moveStatus; // 케릭터가 어디를 바라보는지 방향을 받을 변수
+	/** jumping variable */
 	public static int jp1, jp2; // 점프 cnt를 계산하기 위한 값
+	/** jumping variable */
 	public static boolean try_jump = false;//점프할 때 중력 상태를 받을 변수
+	/** status of items*/
 	public static boolean[] ck= {true,true,true,true};//획득해야하는 아이템들의 상태
+	/** status of life*/
 	public static boolean[] lck = {true, true, true};//라이프 체크를 위한 변수
 	public static int not_key = 0;
 	public static int char_lo = 0;
@@ -24,13 +37,16 @@ public class cat {
 class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 
 	key k1 = new key();
-	startFrame startFrame =new startFrame();
 	draw_image d1 = new draw_image();
 	check_wall w1 = new check_wall();
 	Ladder l = new Ladder();
 	Image buffimg;
 	public ImageObserver Frame = this;
-
+	/**
+	 * set initial values of character
+	 *
+	 * @author JiSeongChoi
+	 */
 	public void init() {
 		cat.x = 20;// 시작할때 캐릭터의 좌표
 		cat.y = 400;// 시작할때 캐릭터의 좌표
@@ -38,7 +54,11 @@ class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 		// 0 : 위쪽, 1 : 오른쪽, 2 : 아래쪽, 3 : 왼쪽
 
 	}
-
+	/**
+	 * Constructor of Frame
+	 *
+	 * @author All
+	 */
 	RpgGame_frame() {//새로운 프레임생성
 		setTitle("Locat");
 		setSize(main.SCREEN_WIDTH,main.SCREEN_HEIGHT);
@@ -101,6 +121,12 @@ class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 	public void on_wall() {
 		w1.on_wall();
 	}
+	/**
+	 * ck_check is a method that checks if all items are eaten.
+	 * 
+	 * @author ChagngSeok-Lee
+	 * @return True if the item has been consumed otherwise returns false.
+	 */
 
 	public boolean ck_check() {
 		if (cat.ck[0] || cat.ck[1] || cat.ck[2]||cat.ck[3])
@@ -108,7 +134,12 @@ class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 		else
 			return true;
 	}//아이템을 모두 먹었는지 확인하는 메소드
-
+	/**
+	 * lck_check is a method that checks if all life is exhausted.
+	 * 
+	 * @author ChagngSeok-Lee
+	 * @return True if the life is exhausted, false otherwise.
+	 */
 	public boolean lck_check() {
 		if (cat.lck[2])
 			return false;
@@ -122,14 +153,22 @@ class RpgGame_frame extends JFrame implements Runnable, KeyListener {
 	Toolkit tk = Toolkit.getDefaultToolkit();
 
 	Thread th;
-
+/**
+ * start is a method for simple order
+ * 
+ * @author All
+ */
 	public void start() { // 기본적인 명령처리
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addKeyListener(this);
 		th = new Thread(this);
 		th.start();
 	}
-
+/**
+ * running thread
+ * 
+ * @author All
+ */
 	public void run() { // 스레드 메소드, 무한 루프
 		while (true) {
 			try {

@@ -6,12 +6,12 @@ import java.awt.image.*;
 import javax.swing.ImageIcon;
 
 public class draw_image {
-	Image img = new ImageIcon("images1/rpg2.png").getImage();
-	Image map = new ImageIcon("images1/stage1.png").getImage();// *이미지 수정
-	Image check = new ImageIcon("images1/check.png").getImage();
-	Image dog = new ImageIcon("images1/smdogL.png").getImage();
-	Image heart = new ImageIcon("images1/life.png").getImage();
-	Image heart_x = new ImageIcon("images1/life_x.png").getImage();
+	Image img = new ImageIcon(getClass().getClassLoader().getResource("images/rpg2.png")).getImage();
+	Image map = new ImageIcon(getClass().getClassLoader().getResource("images/stage1.png")).getImage();// *이미지 수정
+	Image check = new ImageIcon(getClass().getClassLoader().getResource("images/check.png")).getImage();
+	Image dog = new ImageIcon(getClass().getClassLoader().getResource("images/smdogL.png")).getImage();
+	Image heart = new ImageIcon(getClass().getClassLoader().getResource("images/life.png")).getImage();
+	Image heart_x = new ImageIcon(getClass().getClassLoader().getResource("images/life_x.png")).getImage();
 	
 	obstacle dg1 = new obstacle(150, 155);
 	obstacle dg2 = new obstacle(550, 110);
@@ -19,7 +19,6 @@ public class draw_image {
 	// 더블버퍼링용 입니다.
 	Graphics gc;
 
-	private cat cat = null;
 
 	public void paint(Graphics g, Image buffimg, ImageObserver Frame) { // 더블버퍼링을 사용합니다.
 
@@ -94,12 +93,20 @@ public class draw_image {
 
 		}
 	}
-
 	public void draw_background(ImageObserver Frame) {
 		gc.clearRect(0, 0, 800, 600);
 		gc.drawImage(map, 0, 0, Frame);
 	}
-
+/**
+ * The draw_dog1 method draws the obstacle(dog) and contains the collision information
+ *
+ * @author ChagngSeok-Lee
+ * @param Frame ImageObserver
+ * @param dx int input of obstacle(dog)'s x-coordinate
+ * @param dy int input of obstacle(dog)'s y-coordinate
+ * @param distance int Determine how far you want to move
+ * @param dg obstacle An object with x and y coordinates
+ */
 	public void draw_dog1(ImageObserver Frame, int dx, int dy, int distance, obstacle dg) {
 		if ((dx - 10 <= cat.x && dx + 30 >= cat.x)
 				&& (dy - 10 <= cat.y && dy + 10 >= cat.y)) {
@@ -121,7 +128,15 @@ public class draw_image {
 			dg.ox = dg.ox - 2;
 		gc.drawImage(dog, dx, dy, Frame);
 	}
-
+/** 
+ * The checkmark method draws a map based on the state of the item.
+ * 
+ * @author ChagngSeok-Lee
+ * @param Frame ImageObserver
+ * @param cx int input of item's x-coordinate
+ * @param cy int input of item's y-coordinate
+ * @param ckindex int Variable for identifying each item.
+ */
 	public void checkmark(ImageObserver Frame, int cx, int cy, int ckindex) {
 		if ((cx - 15 <= cat.x && cx + 15 >= cat.x)
 				&& (cy - 15 <= cat.y && cy + 15 >= cat.y)) {
@@ -133,14 +148,26 @@ public class draw_image {
 			gc.drawImage(check, cx, cy, Frame);
 		}
 	}
-
+/**
+ * draw_life is a method of drawing a heart (life) based on its state.
+ * 
+ * @author ChagngSeok-Lee
+ * @param Frame ImageObserver
+ * @param lck boolean Variable to check if the life has decreased.
+ * @param lx int The x-coordinate of the heart image.
+ * @param ly int The y-coordinate of the heart image.
+ */
 	public void draw_life(ImageObserver Frame, boolean lck, int lx, int ly) {
 		if (lck) {
 			gc.drawImage(heart, lx, ly, Frame);
 		} else
 			gc.drawImage(heart_x, lx, ly, Frame);
 	}
-
+/**
+ * setInit is a method that initializes the map when the life is reduced.
+ * 
+ * @author ChagngSeok-Lee
+ */
 	public void setInit() {
 
 		cat.x = 20;

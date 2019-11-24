@@ -8,12 +8,12 @@ import javax.swing.*;
 public class startFrame extends JFrame {
 	
 	public void setbutton(){  //게임시작, 게임로딩, 나가기버튼 설정
-	ImageIcon startButtonEnteredImage = new ImageIcon(main.class.getResource("../images/startButtonEntered.png")); //버튼 이미지
-	ImageIcon startButtonBasicImage = new ImageIcon(main.class.getResource("../images/startButtonBasic.png"));
-	ImageIcon continueButtonEnteredImage = new ImageIcon(main.class.getResource("../images/continueButtonEntered.png"));
-	ImageIcon continueButtonBasicImage = new ImageIcon(main.class.getResource("../images/continueButtonBasic.png"));
-	ImageIcon exitButtonEnteredImage = new ImageIcon(main.class.getResource("../images/exitButtonEntered.png"));
-	ImageIcon exitButtonBasicImage = new ImageIcon(main.class.getResource("../images/exitButtonBasic.png"));
+	ImageIcon startButtonEnteredImage = new ImageIcon(getClass().getClassLoader().getResource("images/startButtonEntered.png")); //버튼 이미지
+	ImageIcon startButtonBasicImage = new ImageIcon(getClass().getClassLoader().getResource("images/startButtonBasic.png"));
+	ImageIcon continueButtonEnteredImage = new ImageIcon(getClass().getClassLoader().getResource("images/continueButtonEntered.png"));
+	ImageIcon continueButtonBasicImage = new ImageIcon(getClass().getClassLoader().getResource("images/continueButtonBasic.png"));
+	ImageIcon exitButtonEnteredImage = new ImageIcon(getClass().getClassLoader().getResource("images/exitButtonEntered.png"));
+	ImageIcon exitButtonBasicImage = new ImageIcon(getClass().getClassLoader().getResource("images/exitButtonBasic.png"));
 	
 	JButton startButton = new JButton(startButtonBasicImage); //버튼 객체
 	JButton continueButton = new JButton( continueButtonBasicImage);
@@ -92,8 +92,8 @@ public class startFrame extends JFrame {
 	
 	public void setmenubar(){ //메뉴바 설정
 		
-		JLabel menuBar = new JLabel(new ImageIcon(main.class.getResource("../images/menuBar.png")));
-		ImageIcon quitButtonImage = new ImageIcon(main.class.getResource("../images/quitButton.png"));
+		JLabel menuBar = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/menuBar.png")));
+		ImageIcon quitButtonImage = new ImageIcon(getClass().getClassLoader().getResource("images/quitButton.png"));
 		JButton quitButton = new JButton(quitButtonImage); //메뉴바 나가기 버튼
 		
 		quitButton.setBounds(770,0,25,25);
@@ -130,7 +130,7 @@ public class startFrame extends JFrame {
 	
 	private Image screenImage;
 	private Graphics screenGraphic; //더블버퍼링을 위해 전체화면에 대한 이미지를 담음 
-	private Image background=new ImageIcon(main.class.getResource("../images/backImage.png")).getImage();//이미지를 담을 수 있는 객체 선언 후 이미지 가져오기
+	private Image background=new ImageIcon(getClass().getClassLoader().getResource("images/backImage.png")).getImage();//이미지를 담을 수 있는 객체 선언 후 이미지 가져오기
 	private int mouseX,mouseY;
 	public startFrame() {
 		setUndecorated(true);//전체화면 (메뉴바없애기)

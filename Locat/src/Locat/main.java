@@ -1,6 +1,6 @@
 package Locat;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class main {
 
@@ -8,7 +8,7 @@ public class main {
 	public static final int SCREEN_HEIGHT=600;	//720
 	
 	public static void main(String[] args) {
-		 new startFrame();
+		new startFrame();
 	}
 }
 //그냥 이미지만 불러오는 방식을 이용하면 버퍼링이 심함 그래서 더블버퍼링이용
