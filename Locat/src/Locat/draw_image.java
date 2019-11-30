@@ -6,7 +6,7 @@ import java.awt.image.*;
 import javax.swing.ImageIcon;
 
 public class draw_image {
-	Image img = new ImageIcon(getClass().getClassLoader().getResource("images/rpg2.png")).getImage();
+	Image img = new ImageIcon(getClass().getClassLoader().getResource("images/cat.png")).getImage();
 	Image map = new ImageIcon(getClass().getClassLoader().getResource("images/stage1.png")).getImage();// *이미지 수정
 	Image check = new ImageIcon(getClass().getClassLoader().getResource("images/check.png")).getImage();
 	Image dog = new ImageIcon(getClass().getClassLoader().getResource("images/smdogL.png")).getImage();
