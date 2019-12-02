@@ -131,9 +131,11 @@ public class CatStage extends JPanel implements Runnable {
 				if (lck_check()) {
 					imageManager.setInit();
 				}
+				
 				if (ck_check()) {
 					MainFrame.currentStage = 0;
 					Main.mainFrame.changePanel(MainFrame.currentStage);
+					ck[0]=false;
 				}
 				// puzzle_master();
 			} catch (Exception e) {
