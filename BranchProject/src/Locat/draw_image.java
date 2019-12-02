@@ -13,8 +13,8 @@ public class draw_image {
 	Image heart = new ImageIcon(getClass().getClassLoader().getResource("images/life.png")).getImage();
 	Image heart_x = new ImageIcon(getClass().getClassLoader().getResource("images/life_x.png")).getImage();
 	
-	obstacle dg1 = new obstacle(150, 155);
-	obstacle dg2 = new obstacle(550, 110);
+	Obstacle dg1 = new Obstacle(150, 155);
+	Obstacle dg2 = new Obstacle(550, 110);
 	// 위에 이미지 이름이 바로 rpg.png입니다. 이미지를 불러옵니다
 	// 더블버퍼링용 입니다.
 	Graphics gc;
@@ -98,16 +98,16 @@ public class draw_image {
 		gc.drawImage(map, 0, 0, Frame);
 	}
 /**
- * The draw_dog1 method draws the obstacle(dog) and contains the collision information
+ * The draw_dog1 method draws the Obstacle(dog) and contains the collision information
  *
  * @author ChagngSeok-Lee
  * @param Frame ImageObserver
- * @param dx int input of obstacle(dog)'s x-coordinate
- * @param dy int input of obstacle(dog)'s y-coordinate
+ * @param dx int input of Obstacle(dog)'s x-coordinate
+ * @param dy int input of Obstacle(dog)'s y-coordinate
  * @param distance int Determine how far you want to move
- * @param dg obstacle An object with x and y coordinates
+ * @param dg Obstacle An object with x and y coordinates
  */
-	public void draw_dog1(ImageObserver Frame, int dx, int dy, int distance, obstacle dg) {
+	public void draw_dog1(ImageObserver Frame, int dx, int dy, int distance, Obstacle dg) {
 		if ((dx - 10 <= CatStage.x && dx + 30 >= CatStage.x)
 				&& (dy - 10 <= CatStage.y && dy + 10 >= CatStage.y)) {
 			if (CatStage.x <= dx)
