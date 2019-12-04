@@ -6,9 +6,10 @@ package insam_re;
  */
 public class puzzle_Master {
 	int iceNotKey = 0 ;
+	private int temp = 100;
 	public void puzzle_Master() {
-		find_load();//1스테이지에서 작동@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		//ice_Load();//2스테이지에서 작동@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		find_load();//1�뒪�뀒�씠吏��뿉�꽌 �옉�룞@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		//ice_Load();//2�뒪�뀒�씠吏��뿉�꽌 �옉�룞@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		find_Load_Reset();
 	}
 	/**
@@ -35,12 +36,14 @@ private int loadmark[] = new int[] {17,71,12,21,13,31,24,42,25,52,34,43,45,54,56
 			for(int i = 0;i<10;i++) {
 				if(moving_Test.x>mark[i][0]&&moving_Test.x<mark[i][1]&&moving_Test.y>mark[i][2]&&moving_Test.y<mark[i][3]) {
 					moving_Test.char_lo=i;
+					if(moving_Test.char_lo!=temp) {
 					moving_Test.fload2 = moving_Test.fload1;
 					moving_Test.fload1 = i+1;
-					
+					}
+					temp=moving_Test.char_lo;
 					if(moving_Test.fload2!=moving_Test.fload1) {
-						
 					moving_Test.fload3 = moving_Test.fload2*10+moving_Test.fload1;
+					
 					}
 					
 				}
@@ -69,22 +72,55 @@ private int loadmark[] = new int[] {17,71,12,21,13,31,24,42,25,52,34,43,45,54,56
 				}
 			}
 			 public void find_Load_Reset() {
-				 switch(moving_Test.fload1) {
-				 case 1: if(moving_Test.fload3==21||moving_Test.fload3==31||moving_Test.fload3==71) {
-					 
-				 }else {moving_Test.reset=true;};
-				 case 2 :if(moving_Test.fload3==42||moving_Test.fload3==52||moving_Test.fload3==12) {
-					 
-				 }else {moving_Test.reset=true;};
-				 case 3 :if(moving_Test.fload3==13||moving_Test.fload3==43) {
-					 
-				 }else {moving_Test.reset=true;};
+				 if(moving_Test.fload1==1) {
+					 if(moving_Test.fload2==7||moving_Test.fload2==2||moving_Test.fload2==3||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
 				 }
-				 if(moving_Test.reset==true) {
-				//	 moving_Test.x=100;
-				//	 moving_Test.y=100;
-					 moving_Test.reset=false;
-					 
+				 if(moving_Test.fload1==2) {
+					 if(moving_Test.fload2==1||moving_Test.fload2==4||moving_Test.fload2==5||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
+				 }
+				 if(moving_Test.fload1==3) {
+					 if(moving_Test.fload2==1||moving_Test.fload2==4||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
+				 }
+				 if(moving_Test.fload1==4) {
+					 if(moving_Test.fload2==2||moving_Test.fload2==3||moving_Test.fload2==5||moving_Test.fload2==8||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
+				 }
+				 if(moving_Test.fload1==5) {
+					 if(moving_Test.fload2==2||moving_Test.fload2==4||moving_Test.fload2==6||moving_Test.fload2==9||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
+				 }
+				 if(moving_Test.fload1==6) {
+					 if(moving_Test.fload2==5||moving_Test.fload2==10||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
+				 }
+				 if(moving_Test.fload1==7) {
+					 if(moving_Test.fload2==1||moving_Test.fload2==8||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
+				 }
+				 if(moving_Test.fload1==8) {
+					 if(moving_Test.fload2==4||moving_Test.fload2==7||moving_Test.fload2==9||moving_Test.fload2==10||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
+				 }
+				 if(moving_Test.fload1==9) {
+					 if(moving_Test.fload2==5||moving_Test.fload2==8||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
+				 }
+				 if(moving_Test.fload1==10) {
+					 if(moving_Test.fload2==6||moving_Test.fload2==8||moving_Test.fload2==0) {
+						 
+					 }else {moving_Test.reset=true;}
 				 }
 			 }
 		}

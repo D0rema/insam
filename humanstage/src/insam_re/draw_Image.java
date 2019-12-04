@@ -15,7 +15,7 @@ public class draw_Image{
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Image img = new ImageIcon("images/rpg2.png").getImage();
 	Image map = new ImageIcon("images/map1.png").getImage();
-	//map1은 1스테이지 map2는 2스테이지
+	//map1�� 1�뒪�뀒�씠吏� map2�뒗 2�뒪�뀒�씠吏�
 	Image mark = new ImageIcon("images/O.png").getImage();
 	
 	Graphics gc;
@@ -26,6 +26,7 @@ public class draw_Image{
 	 * The m is used to draw a mark that checks the way through.
 	 */
 	public int m[] = new int [14];
+	private int cc1 = 0;
 	/**
 	 * 
 The x and y contain the coordinates of the mark that checks the path.
@@ -43,10 +44,10 @@ The x and y contain the coordinates of the mark that checks the path.
 			
 		gc = buffimg.getGraphics();
 		draw_background(Frame); 
-		checkmark(Frame);//1스테이지에서 작동@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		reset_mark();//1스테이지에서 작동@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		checkmark(Frame);//1�뒪�뀒�씠吏��뿉�꽌 �옉�룞@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		reset_mark();//1�뒪�뀒�씠吏��뿉�꽌 �옉�룞@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		update(g,buffimg,Frame);
-	
+		clear_Stage1();
 
 		}
 	/**
@@ -67,9 +68,9 @@ The x and y contain the coordinates of the mark that checks the path.
 		gc.drawString(Integer.toString((moving_Test.reset)?1:0),200, 100);
 		gc.drawString(Integer.toString(moving_Test.x),350, 100);
 		gc.drawString(Integer.toString(moving_Test.y),500, 100);
-	//	gc.drawString(Integer.toString(moving_Test.),350, 150);
-		gc.drawString(Integer.toString(moving_Test.moveStatus),400, 150);
-		gc.drawString(Integer.toString(moving_Test.iload),450, 150);
+		gc.drawString(Integer.toString(moving_Test.fload1),350, 150);
+		gc.drawString(Integer.toString(moving_Test.fload2),400, 150);
+		gc.drawString(Integer.toString(moving_Test.fload3),450, 150);
 		
 		
 
@@ -203,12 +204,24 @@ The x and y contain the coordinates of the mark that checks the path.
 			 
 			
 		 }
+		public void clear_Stage1() {
+			cc1=m[0]*m[1]*m[2]*m[3]*m[4]*m[5]*m[6]*m[7]*m[8]*m[9]*m[10]*m[11]*m[12]*m[13];
+			if(cc1==1) {
+				System.out.println("clear");
+			}
+		}
 		public void reset_mark() {
 			if(moving_Test.reset==true) {
 				for(int i =0;i<14;i++) {
+					moving_Test.fload1=0;
+					moving_Test.fload2=0;
 					moving_Test.fload3=0;
 					m[i]=0;
 				}
+					System.out.println("reset");
+					 moving_Test.x=528;
+					 moving_Test.y=124;
+					 moving_Test.reset=false;
 			}
 		}
 			 
