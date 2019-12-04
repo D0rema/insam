@@ -12,27 +12,26 @@ public class ImageManager {
 	Image dog = new ImageIcon(getClass().getClassLoader().getResource("images/smdogL.png")).getImage();
 	Image heart = new ImageIcon(getClass().getClassLoader().getResource("images/life.png")).getImage();
 	Image heart_x = new ImageIcon(getClass().getClassLoader().getResource("images/life_x.png")).getImage();
-	
-	Obstacle dg1 = new Obstacle(150, 155);
-	Obstacle dg2 = new Obstacle(550, 110);
+
+	Obstacle dg1 = new Obstacle(150, 155, 100);
+	Obstacle dg2 = new Obstacle(550, 110, 70);
 	// 위에 이미지 이름이 바로 rpg.png입니다. 이미지를 불러옵니다
 	// 더블버퍼링용 입니다.
 	Graphics gc;
-
 
 	public void paint(Graphics g, Image buffimg, ImageObserver Frame) { // 더블버퍼링을 사용합니다.
 
 		gc = buffimg.getGraphics();
 		draw_Background(Frame); // 배경을 그리는 함수
-		checkmark(Frame, 20, 230, 0); // 특수효과를 그리는 함수
-		checkmark(Frame, 400, 40, 1);
-		checkmark(Frame, 750, 120, 2);
-		checkmark(Frame, 740, 340, 3);
-		draw_dog1(Frame, dg1.ox, dg1.oy, 100, dg1);
-		draw_dog1(Frame, dg2.ox, dg2.oy, 70, dg2);
-		draw_life(Frame, CatStage.lck[0], 740, 30);
-		draw_life(Frame, CatStage.lck[1], 695, 30);
-		draw_life(Frame, CatStage.lck[2], 650, 30);
+		checkItem(Frame, 20, 230, 0); // 특수효과를 그리는 함수
+		checkItem(Frame, 400, 40, 1);
+		checkItem(Frame, 750, 120, 2);
+		checkItem(Frame, 740, 340, 3);
+		drawDog(Frame, dg1.ox, dg1.oy, 100, dg1);
+		drawDog(Frame, dg2.ox, dg2.oy, 70, dg2);
+		drawLife(Frame, CatStage.life[0], 740, 30);
+		drawLife(Frame, CatStage.life[1], 695, 30);
+		drawLife(Frame, CatStage.life[2], 650, 30);
 		update(g, buffimg, Frame);
 
 	}
@@ -93,91 +92,62 @@ public class ImageManager {
 
 		}
 	}
+
 	public void draw_Background(ImageObserver Frame) {
 		gc.clearRect(0, 0, 800, 600);
 		gc.drawImage(map, 0, 0, Frame);
 	}
-/**
- * The draw_dog1 method draws the Obstacle(dog) and contains the collision information
- *
- * @author ChagngSeok-Lee
- * @param Frame ImageObserver
- * @param dx int input of Obstacle(dog)'s x-coordinate
- * @param dy int input of Obstacle(dog)'s y-coordinate
- * @param distance int Determine how far you want to move
- * @param dg Obstacle An object with x and y coordinates
- */
-	public void draw_dog1(ImageObserver Frame, int dx, int dy, int distance, Obstacle dg) {
-		if ((dx - 10 <= CatStage.x && dx + 30 >= CatStage.x)
-				&& (dy - 10 <= CatStage.y && dy + 10 >= CatStage.y)) {
-			if (CatStage.x <= dx)
-				CatStage.x = CatStage.x - 50;
-			else
-				CatStage.x = CatStage.x + 50;
 
-			if (CatStage.lck[0])
-				CatStage.lck[0] = false;
-			else if (CatStage.lck[1])
-				CatStage.lck[1] = false;
-			else
-				CatStage.lck[2] = false;
-		}
-		if ((CatStage.cnt / distance) % 2 == 0) {
-			dg.ox = dg.ox + 2;
-		} else
-			dg.ox = dg.ox - 2;
+	/**
+	 * The draw_dog1 method draws the Obstacle(dog) and contains the collision
+	 * information
+	 *
+	 * @author ChagngSeok-Lee
+	 * @param Frame    ImageObserver
+	 * @param dx       int input of Obstacle(dog)'s x-coordinate
+	 * @param dy       int input of Obstacle(dog)'s y-coordinate
+	 * @param distance int Determine how far you want to move
+	 * @param dg       Obstacle An object with x and y coordinates
+	 */
+	public void drawDog(ImageObserver Frame, int dx, int dy, int distance, Obstacle dg) {
+		dg.crush();
 		gc.drawImage(dog, dx, dy, Frame);
 	}
-/** 
- * The checkmark method draws a map based on the state of the item.
- * 
- * @author ChagngSeok-Lee
- * @param Frame ImageObserver
- * @param cx int input of item's x-coordinate
- * @param cy int input of item's y-coordinate
- * @param ckindex int Variable for identifying each item.
- */
-	public void checkmark(ImageObserver Frame, int cx, int cy, int ckindex) {
-		if ((cx - 15 <= CatStage.x && cx + 15 >= CatStage.x)
-				&& (cy - 15 <= CatStage.y && cy + 15 >= CatStage.y)) {
-			CatStage.ck[ckindex] = false;
+
+	/**
+	 * The checkmark method draws a map based on the state of the item.
+	 * 
+	 * @author ChagngSeok-Lee
+	 * @param Frame   ImageObserver
+	 * @param cx      int input of item's x-coordinate
+	 * @param cy      int input of item's y-coordinate
+	 * @param ckindex int Variable for identifying each item.
+	 */
+	public void checkItem(ImageObserver Frame, int cx, int cy, int ckindex) {
+		if ((cx - 15 <= CatStage.x && cx + 15 >= CatStage.x) && (cy - 15 <= CatStage.y && cy + 15 >= CatStage.y)) {
+			CatStage.item[ckindex] = false;
 
 		}
 
-		if (CatStage.ck[ckindex] == true) {
+		if (CatStage.item[ckindex] == true) {
 			gc.drawImage(check, cx, cy, Frame);
 		}
 	}
-/**
- * draw_life is a method of drawing a heart (life) based on its state.
- * 
- * @author ChagngSeok-Lee
- * @param Frame ImageObserver
- * @param lck boolean Variable to check if the life has decreased.
- * @param lx int The x-coordinate of the heart image.
- * @param ly int The y-coordinate of the heart image.
- */
-	public void draw_life(ImageObserver Frame, boolean lck, int lx, int ly) {
+
+	/**
+	 * draw_life is a method of drawing a heart (life) based on its state.
+	 * 
+	 * @author ChagngSeok-Lee
+	 * @param Frame ImageObserver
+	 * @param lck   boolean Variable to check if the life has decreased.
+	 * @param lx    int The x-coordinate of the heart image.
+	 * @param ly    int The y-coordinate of the heart image.
+	 */
+	public void drawLife(ImageObserver Frame, boolean lck, int lx, int ly) {
 		if (lck) {
 			gc.drawImage(heart, lx, ly, Frame);
 		} else
 			gc.drawImage(heart_x, lx, ly, Frame);
-	}
-/**
- * setInit is a method that initializes the map when the life is reduced.
- * 
- * @author ChagngSeok-Lee
- */
-	public void setInit() {
-
-		CatStage.x = 20;
-		CatStage.y = 400;
-		for (int i = 0; i < 4; i++) {
-			CatStage.ck[i] = true;
-		}
-		for (int j = 0; j < 3; j++) {
-			CatStage.lck[j] = true;
-		}
 	}
 
 }

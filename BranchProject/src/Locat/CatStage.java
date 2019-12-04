@@ -9,21 +9,21 @@ public class CatStage extends JPanel implements Runnable {
 	/** variable for checking character direction */
 	public static boolean playerMove = false;
 	/** character position */
-	public static int x, y; // ÄÉ¸¯ÅÍÀÇ ÇöÀç ÁÂÇ¥¸¦ ¹ÞÀ» º¯¼ö
+	public static int x, y; // ï¿½É¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/** gravity variable */
-	public static int g_y; // Áß·ÂÀ» Ã¼Å©ÇÏ±â À§ÇÑ ÁÂÇ¥
+	public static int g_y; // ï¿½ß·ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
 	/** thread time counter */
-	public static int cnt; // ¹«ÇÑ ·çÇÁ¸¦ Ä«¿îÅÍ ÇÏ±â À§ÇÑ º¯¼ö
+	public static int cnt; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/** variable for checking character direction */
-	public static int moveStatus; // ÄÉ¸¯ÅÍ°¡ ¾îµð¸¦ ¹Ù¶óº¸´ÂÁö ¹æÇâÀ» ¹ÞÀ» º¯¼ö
+	public static int moveStatus; // ï¿½É¸ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/** jumping variable */
-	public static int jp1, jp2; // Á¡ÇÁ cnt¸¦ °è»êÇÏ±â À§ÇÑ °ª
+	public static int jp1, jp2; // ï¿½ï¿½ï¿½ï¿½ cntï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	/** jumping variable */
-	public static boolean try_jump = false;// Á¡ÇÁÇÒ ¶§ Áß·Â »óÅÂ¸¦ ¹ÞÀ» º¯¼ö
+	public static boolean try_jump = false;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß·ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/** status of items */
-	public static boolean[] ck = { true, true, true, true };// È¹µæÇØ¾ßÇÏ´Â ¾ÆÀÌÅÛµéÀÇ »óÅÂ
+	public static boolean[] item = { true, true, true, true };// È¹ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/** status of life */
-	public static boolean[] lck = { true, true, true };// ¶óÀÌÇÁ Ã¼Å©¸¦ À§ÇÑ º¯¼ö
+	public static boolean[] life = { true, true, true };// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public static int not_key = 0;
 	public static int char_lo = 0;
 
@@ -37,7 +37,7 @@ public class CatStage extends JPanel implements Runnable {
 	 *
 	 * @author All
 	 */
-	public CatStage() {// »õ·Î¿î ÇÁ·¹ÀÓ»ý¼º
+	public CatStage() {// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½
 		setSize(MainFrame.SCREEN_WIDTH, MainFrame.SCREEN_HEIGHT);
 		init();
 		addKeyListener(new CatStageKey());
@@ -51,10 +51,10 @@ public class CatStage extends JPanel implements Runnable {
 	 * @author JiSeongChoi
 	 */
 	public void init() {
-		x = 20;// ½ÃÀÛÇÒ¶§ Ä³¸¯ÅÍÀÇ ÁÂÇ¥
-		y = 436;// ½ÃÀÛÇÒ¶§ Ä³¸¯ÅÍÀÇ ÁÂÇ¥
+		x = 20;// ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
+		y = 436;// ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
 		moveStatus = 1;
-		// 0 : À§ÂÊ, 1 : ¿À¸¥ÂÊ, 2 : ¾Æ·¡ÂÊ, 3 : ¿ÞÂÊ
+		// 0 : ï¿½ï¿½ï¿½ï¿½, 1 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2 : ï¿½Æ·ï¿½ï¿½ï¿½, 3 : ï¿½ï¿½ï¿½ï¿½
 	}
 
 
@@ -74,12 +74,12 @@ public class CatStage extends JPanel implements Runnable {
 	 * @return True if the item has been consumed otherwise returns false.
 	 */
 
-	public boolean ck_check() {
-		if (ck[0] || ck[1] || ck[2] || ck[3])
+	public boolean itemCheck() {
+		if (item[0] || item[1] || item[2] || item[3])
 			return false;
 		else
 			return true;
-	}// ¾ÆÀÌÅÛÀ» ¸ðµÎ ¸Ô¾ú´ÂÁö È®ÀÎÇÏ´Â ¸Þ¼Òµå
+	}// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 
 	/**
 	 * lck_check is a method that checks if all life is exhausted.
@@ -87,12 +87,12 @@ public class CatStage extends JPanel implements Runnable {
 	 * @author ChagngSeok-Lee
 	 * @return True if the life is exhausted, false otherwise.
 	 */
-	public boolean lck_check() {
-		if (lck[2])
+	public boolean lifeCheck() {
+		if (life[2])
 			return false;
 		else
 			return true;
-	}// ¶óÀÌÇÁ°¡ ¸ðµÎ ¶³¾îÁ³´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+	}// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 	/*
 	 * public void puzzle_master() { z1.find_load(); }
 	 */
@@ -104,17 +104,32 @@ public class CatStage extends JPanel implements Runnable {
 	 * 
 	 * @author All
 	 */
-	public void start() { // ±âº»ÀûÀÎ ¸í·ÉÃ³¸®
+	public void start() { // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 		th = new Thread(this);
 		th.start();
 	}
+	/**
+	 * setInit is a method that initializes the map when the life is reduced.
+	 * 
+	 * @author ChagngSeok-Lee
+	 */
+		public void setInit() {
 
+			CatStage.x = 20;
+			CatStage.y = 400;
+			for (int i = 0; i < 4; i++) {
+				CatStage.item[i] = true;
+			}
+			for (int j = 0; j < 3; j++) {
+				CatStage.life[j] = true;
+			}
+		}
 	/**
 	 * running thread
 	 * 
 	 * @author All
 	 */
-	public void run() { // ½º·¹µå ¸Þ¼Òµå, ¹«ÇÑ ·çÇÁ
+	public void run() { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		while (true) {
 			try {
 				CatStageKey.keyProcess();
@@ -128,14 +143,14 @@ public class CatStage extends JPanel implements Runnable {
 				
 				ladder.on_Ladder();
 				
-				if (lck_check()) {
-					imageManager.setInit();
+				if (lifeCheck()) {
+					setInit();
 				}
 				
-				if (ck_check()) {
+				if (itemCheck()) {
 					MainFrame.currentStage = 0;
 					Main.mainFrame.changePanel(MainFrame.currentStage);
-					ck[0]=false;
+					item[0]=false;
 				}
 				// puzzle_master();
 			} catch (Exception e) {
