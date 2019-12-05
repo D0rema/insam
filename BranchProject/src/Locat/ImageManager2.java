@@ -5,30 +5,49 @@ import java.awt.image.*;
 
 import javax.swing.ImageIcon;
 
-public class ImageManager {
+public class ImageManager2 {
 	Image img = new ImageIcon(getClass().getClassLoader().getResource("images/cat.png")).getImage();
-	Image map = new ImageIcon(getClass().getClassLoader().getResource("images/stage1.png")).getImage();// *ì´ë¯¸ì§€ ìˆ˜ì •
+	Image map2 = new ImageIcon(getClass().getClassLoader().getResource("images/stage2.png")).getImage();// *ÀÌ¹ÌÁö ¼öÁ¤
 	Image check = new ImageIcon(getClass().getClassLoader().getResource("images/check.png")).getImage();
 	Image dog = new ImageIcon(getClass().getClassLoader().getResource("images/smdogL.png")).getImage();
+	Image icicle = new ImageIcon(getClass().getClassLoader().getResource("images/icicle.png")).getImage();
 	Image heart = new ImageIcon(getClass().getClassLoader().getResource("images/life.png")).getImage();
 	Image heart_x = new ImageIcon(getClass().getClassLoader().getResource("images/life_x.png")).getImage();
 
-	Obstacle dg1 = new Obstacle(150, 155, 100);
-	Obstacle dg2 = new Obstacle(560, 110, 80);
-	// ìœ„ì— ì´ë¯¸ì§€ ì´ë¦„ì´ ë°”ë¡œ rpg.pngì…ë‹ˆë‹¤. ì´ë¯¸ì§€ë¥¼ ë¶ˆëŸ¬ì˜µë‹ˆë‹¤
-	// ë”ë¸”ë²„í¼ë§ìš© ì…ë‹ˆë‹¤.
+	Obstacle dg1 = new Obstacle(100, 355, 80);
+	Obstacle dg2 = new Obstacle(67, 50, 70);
+	Obstacle dg3 = new Obstacle(605, 150, 65);
+	Obstacle dg4 = new Obstacle(515, 395, 75);
+	Icicle icicle1 = new Icicle(135,255,125);
+	Icicle icicle2 = new Icicle(180,130,70);
+	Icicle icicle3 = new Icicle(420,140,110);
+	Icicle icicle4 = new Icicle(575,315,100);
+	
+	// À§¿¡ ÀÌ¹ÌÁö ÀÌ¸§ÀÌ ¹Ù·Î rpg.pngÀÔ´Ï´Ù. ÀÌ¹ÌÁö¸¦ ºÒ·¯¿É´Ï´Ù
+	
+	// ´õºí¹öÆÛ¸µ¿ë ÀÔ´Ï´Ù.
 	Graphics gc;
+	
+	
 
-	public void paint(Graphics g, Image buffimg, ImageObserver Frame) { // ë”ë¸”ë²„í¼ë§ì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
+	public void paint(Graphics g, Image buffimg, ImageObserver Frame) { // ´õºí¹öÆÛ¸µÀ» »ç¿ëÇÕ´Ï´Ù.
 
 		gc = buffimg.getGraphics();
-		draw_Background(Frame); // ë°°ê²½ì„ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
-		checkItem(Frame, 20, 230, 0); // íŠ¹ìˆ˜íš¨ê³¼ë¥¼ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
-		checkItem(Frame, 400, 40, 1);
-		checkItem(Frame, 750, 120, 2);
-		checkItem(Frame, 740, 340, 3);
-		drawDog(Frame, dg1.ox, dg1.oy, 100, dg1);
-		drawDog(Frame, dg2.ox, dg2.oy, 70, dg2);
+		draw_Background(Frame); // ¹è°æÀ» ±×¸®´Â ÇÔ¼ö
+		checkItem(Frame, 110, 370, 0); // Æ¯¼öÈ¿°ú¸¦ ±×¸®´Â ÇÔ¼ö
+		checkItem(Frame, 10, 138, 1);
+		checkItem(Frame, 200, 70, 2);
+		checkItem(Frame, 500, 55, 3);
+		checkItem(Frame, 750, 165, 4);
+		checkItem(Frame, 750, 345, 5);
+		drawDog(Frame, dg1.ox, dg1.oy, dg1);
+		drawDog(Frame, dg2.ox, dg2.oy, dg2);
+		drawDog(Frame, dg3.ox, dg3.oy, dg3);
+		drawDog(Frame, dg4.ox, dg4.oy, dg4);
+		drawIcicle(Frame, icicle1.ix, icicle1.iy, icicle1);
+		drawIcicle(Frame, icicle2.ix, icicle2.iy, icicle2);
+		drawIcicle(Frame, icicle3.ix, icicle3.iy, icicle3);
+		drawIcicle(Frame, icicle4.ix, icicle4.iy, icicle4);
 		drawLife(Frame, CatStage.life[0], 740, 30);
 		drawLife(Frame, CatStage.life[1], 695, 30);
 		drawLife(Frame, CatStage.life[2], 650, 30);
@@ -37,7 +56,7 @@ public class ImageManager {
 	}
 
 	public void update(Graphics g, Image buffimg, ImageObserver Frame) {
-		// ë”ë¸” ë²„í¼ë§ì„ ì´ìš©í•´ ë²„í¼ì— ê·¸ë ¤ì§„ê²ƒì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
+		// ´õºí ¹öÆÛ¸µÀ» ÀÌ¿ëÇØ ¹öÆÛ¿¡ ±×·ÁÁø°ÍÀ» °¡Á®¿É´Ï´Ù.
 		DrawImg(Frame);
 
 		g.drawImage(buffimg, 0, 0, Frame);
@@ -54,23 +73,23 @@ public class ImageManager {
 		// gc.drawString(Integer.toString(on_bottom),500, 150);
 		// gc.drawString(Integer.toString(on_flat),350, 150);
 
-		// ìœ„ëŠ” ë‹¨ìˆœíˆ ë¬´í•œë£¨í”„ ì ìš©ì—¬ë¶€ì™€ ì¼€ë¦­í„° ë°©í–¥ ì²´í¬ë¥¼ ìœ„í•´
-		// ëˆˆìœ¼ë¡œ ë³´ë©´ì„œ í…ŒìŠ¤íŠ¸í•  ìš©ë„ë¡œ ì“°ì´ëŠ” í…ìŠ¤íŠ¸ í‘œì¶œì…ë‹ˆë‹¤.
+		// À§´Â ´Ü¼øÈ÷ ¹«ÇÑ·çÇÁ Àû¿ë¿©ºÎ¿Í ÄÉ¸¯ÅÍ ¹æÇâ Ã¼Å©¸¦ À§ÇØ
+		// ´«À¸·Î º¸¸é¼­ Å×½ºÆ®ÇÒ ¿ëµµ·Î ¾²ÀÌ´Â ÅØ½ºÆ® Ç¥ÃâÀÔ´Ï´Ù.
 
 		MoveImage(img, CatStage.x, CatStage.y, 50, 75, Frame);
-		// ì¼€ë¦­í„°ë¥¼ ê±¸ì–´ê°€ê²Œ ë§Œë“¤ê¸° ìœ„í•´ ì¶”ê°€ë¡œ ë§Œë“  ë©”ì†Œë“œ ì…ë‹ˆë‹¤.
+		// ÄÉ¸¯ÅÍ¸¦ °É¾î°¡°Ô ¸¸µé±â À§ÇØ Ãß°¡·Î ¸¸µç ¸Ş¼Òµå ÀÔ´Ï´Ù.
 
 	}
 
 	public void MoveImage(Image img, int x, int y, int width, int height, ImageObserver Frame) {
-		// ì¼€ë¦­í„° ì´ë¯¸ì§€, ì¼€ë¦­í„° ìœ„ì¹˜, ì¼€ë¦­í„° í¬ê¸°ë¥¼ ë°›ìŠµë‹ˆë‹¤.
-		// ë°›ì€ ê°’ì„ ì´ìš©í•´ì„œ ìœ„ì˜ ì´ë¯¸ì§€ì¹©ì…‹ì—ì„œ ì¼€ë¦­í„°ë¥¼ ì˜ë¼ë‚´
-		// í‘œì¶œí•˜ë„ë¡ ê³„ì‚°í•˜ëŠ” ë©”ì†Œë“œ ì…ë‹ˆë‹¤.
+		// ÄÉ¸¯ÅÍ ÀÌ¹ÌÁö, ÄÉ¸¯ÅÍ À§Ä¡, ÄÉ¸¯ÅÍ Å©±â¸¦ ¹Ş½À´Ï´Ù.
+		// ¹ŞÀº °ªÀ» ÀÌ¿ëÇØ¼­ À§ÀÇ ÀÌ¹ÌÁöÄ¨¼Â¿¡¼­ ÄÉ¸¯ÅÍ¸¦ Àß¶ó³»
+		// Ç¥ÃâÇÏµµ·Ï °è»êÇÏ´Â ¸Ş¼Òµå ÀÔ´Ï´Ù.
 
 		gc.setClip(x, y, width, height);
-		// í˜„ì¬ ì¢Œí‘œì—ì„œ ì¼€ë¦­í„°ì˜ í¬ê¸° ë§Œí¼ ì´ë¯¸ì§€ë¥¼ ì˜ë¼ ê·¸ë¦½ë‹ˆë‹¤.
+		// ÇöÀç ÁÂÇ¥¿¡¼­ ÄÉ¸¯ÅÍÀÇ Å©±â ¸¸Å­ ÀÌ¹ÌÁö¸¦ Àß¶ó ±×¸³´Ï´Ù.
 
-		if (CatStage.playerMove) { // ì¼€ë¦­í„°ì˜ ì›€ì§ì„ ì—¬ë¶€ë¥¼ íŒë‹¨í•©ë‹ˆë‹¤.
+		if (CatStage.playerMove) { // ÄÉ¸¯ÅÍÀÇ ¿òÁ÷ÀÓ ¿©ºÎ¸¦ ÆÇ´ÜÇÕ´Ï´Ù.
 			if (CatStage.cnt / 10 % 4 == 0) {
 				gc.drawImage(img, x - (width * 0), y - (height * CatStage.moveStatus), Frame);
 
@@ -83,19 +102,19 @@ public class ImageManager {
 			} else if (CatStage.cnt / 10 % 4 == 3) {
 				gc.drawImage(img, x - (width * 1), y - (height * CatStage.moveStatus), Frame);
 			}
-			// ì¼€ë¦­í„°ì˜ ë°©í–¥ì— ë”°ë¼ ê±¸ì–´ê°€ëŠ” ëª¨ì…˜ì„ ì·¨í•˜ëŠ”
-			// ì¼€ë¦­í„° ì´ë¯¸ì§€ë¥¼ ì‹œê°„ì°¨ë¥¼ ì´ìš©í•´ ìˆœì°¨ì ìœ¼ë¡œ ê·¸ë¦½ë‹ˆë‹¤.
+			// ÄÉ¸¯ÅÍÀÇ ¹æÇâ¿¡ µû¶ó °É¾î°¡´Â ¸ğ¼ÇÀ» ÃëÇÏ´Â
+			// ÄÉ¸¯ÅÍ ÀÌ¹ÌÁö¸¦ ½Ã°£Â÷¸¦ ÀÌ¿ëÇØ ¼øÂ÷ÀûÀ¸·Î ±×¸³´Ï´Ù.
 
 		} else {
 			gc.drawImage(img, x - (width * 1), y - (height * CatStage.moveStatus), Frame);
-			// ì¼€ë¦­í„°ê°€ ì›€ì§ì´ì§€ ì•Šìœ¼ë©´ ì •ì§€í•œ ì¼€ë¦­í„°ë¥¼ ê·¸ë¦½ë‹ˆë‹¤.
+			// ÄÉ¸¯ÅÍ°¡ ¿òÁ÷ÀÌÁö ¾ÊÀ¸¸é Á¤ÁöÇÑ ÄÉ¸¯ÅÍ¸¦ ±×¸³´Ï´Ù.
 
 		}
 	}
 
 	public void draw_Background(ImageObserver Frame) {
 		gc.clearRect(0, 0, 800, 600);
-		gc.drawImage(map, 0, 0, Frame);
+		gc.drawImage(map2, 0, 0, Frame);
 	}
 
 	/**
@@ -109,10 +128,14 @@ public class ImageManager {
 	 * @param distance int Determine how far you want to move
 	 * @param dg       Obstacle An object with x and y coordinates
 	 */
-	public void drawDog(ImageObserver Frame, int dx, int dy, int distance, Obstacle dg) {
+	public void drawDog(ImageObserver Frame, int dx, int dy, Obstacle dg) {
 		dg.crush();
 		dg.move();
 		gc.drawImage(dog, dx, dy, Frame);
+	}
+	public void drawIcicle(ImageObserver Frame, int dx, int dy, Icicle ice) {
+		ice.move();
+		gc.drawImage(icicle, dx, dy, Frame);
 	}
 
 	/**

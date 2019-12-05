@@ -21,13 +21,13 @@ public class CatStage extends JPanel implements Runnable {
 	/** jumping variable */
 	public static boolean try_jump = false;// ������ �� �߷� ���¸� ���� ����
 	/** status of items */
-	public static boolean[] item = { true, true, true, true };// ȹ���ؾ��ϴ� �����۵��� ����
+	public static boolean[] item = { true, true, true, true, true, true };// ȹ���ؾ��ϴ� �����۵��� ����
 	/** status of life */
 	public static boolean[] life = { true, true, true };// ������ üũ�� ���� ����
 	public static int not_key = 0;
 	public static int char_lo = 0;
 
-	ImageManager imageManager = new ImageManager();
+	ImageManager2 imageManager = new ImageManager2();
 	Block block = new Block();
 	Ladder ladder = new Ladder();
 	Image buffimg;

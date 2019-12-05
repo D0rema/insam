@@ -38,10 +38,12 @@ public class Obstacle {
 			else
 				CatStage.life[2] = false;
 		}
+		
+	}
+	public void move() {
 		if ((CatStage.cnt / distance) % 2 == 0) {
 			ox = ox + 2;
 		} else
 			ox = ox - 2;
-		
 	}
 }
