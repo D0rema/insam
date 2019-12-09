@@ -2,10 +2,12 @@ package Locat;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.ImageObserver;
 
 import javax.swing.JPanel;
 
 public class CatStage extends JPanel implements Runnable {
+	public static int stage = 1;
 	/** variable for checking character direction */
 	public static boolean playerMove = false;
 	/** character position */
@@ -21,7 +23,9 @@ public class CatStage extends JPanel implements Runnable {
 	/** jumping variable */
 	public static boolean try_jump = false;// ������ �� �߷� ���¸� ���� ����
 	/** status of items */
-	public static boolean[] item = { true, true, true, true };// ȹ���ؾ��ϴ� �����۵��� ����
+	public static boolean[][] item = { { true, true, true, true }, { true, true, true, true, true, true } };// ȹ���ؾ��ϴ�
+																											// �����۵���
+																											// ����
 	/** status of life */
 	public static boolean[] life = { true, true, true };// ������ üũ�� ���� ����
 	public static int not_key = 0;
@@ -44,7 +48,7 @@ public class CatStage extends JPanel implements Runnable {
 		setFocusable(true);
 		start();
 	}
-	
+
 	/**
 	 * set initial values of character
 	 *
@@ -56,7 +60,14 @@ public class CatStage extends JPanel implements Runnable {
 		moveStatus = 1;
 		// 0 : ����, 1 : ������, 2 : �Ʒ���, 3 : ����
 	}
+	
+	public void drawItem(ImageObserver Frame, int cx, int cy, int ckindex) {
+		if ((cx - 15 <= CatStage.x && cx + 15 >= CatStage.x) && (cy - 15 <= CatStage.y && cy + 15 >= CatStage.y)) {
+			CatStage.item[stage-1][ckindex] = false;
 
+		}
+
+	}
 
 	public void paint(Graphics g) {
 		buffimg = createImage(800, 600);
@@ -75,10 +86,16 @@ public class CatStage extends JPanel implements Runnable {
 	 */
 
 	public boolean itemCheck() {
-		if (item[0] || item[1] || item[2] || item[3])
-			return false;
-		else
-			return true;
+		boolean checkItem = item[stage-1][0];
+		
+
+	      for (int i = 1; i < item[stage-1].length; i++) {
+	         checkItem = checkItem || item[stage-1][i];
+	      }
+	      if (!checkItem)
+	         return false;
+	      else
+	         return true;
 	}// �������� ��� �Ծ����� Ȯ���ϴ� �޼ҵ�
 
 	/**
@@ -108,22 +125,26 @@ public class CatStage extends JPanel implements Runnable {
 		th = new Thread(this);
 		th.start();
 	}
+
 	/**
 	 * setInit is a method that initializes the map when the life is reduced.
 	 * 
 	 * @author ChagngSeok-Lee
 	 */
-		public void setInit() {
+	public void setInit() {
+		
 
-			CatStage.x = 20;
-			CatStage.y = 400;
-			for (int i = 0; i < 4; i++) {
-				CatStage.item[i] = true;
-			}
-			for (int j = 0; j < 3; j++) {
-				CatStage.life[j] = true;
-			}
+		CatStage.x = 20;
+		CatStage.y = 400;
+		cnt=0;
+		for (int i = 0; i < 4; i++) {
+			CatStage.item[stage-1][i] = true;
 		}
+		for (int j = 0; j < 3; j++) {
+			CatStage.life[j] = true;
+		}
+	}
+
 	/**
 	 * running thread
 	 * 
@@ -134,23 +155,23 @@ public class CatStage extends JPanel implements Runnable {
 			try {
 				CatStageKey.keyProcess();
 				repaint();
-				
+
 				block.check();
 				block.checkBoundary();
-				
+
 				Thread.sleep(20);
 				cnt++;
-				
+
 				ladder.on_Ladder();
-				
+
 				if (lifeCheck()) {
 					setInit();
 				}
-				
-				if (itemCheck()) {
-					MainFrame.currentStage = 0;
-					Main.mainFrame.changePanel(MainFrame.currentStage);
-					item[0]=false;
+
+				if (!itemCheck()) {
+					setInit();
+					stage = 2;
+
 				}
 				// puzzle_master();
 			} catch (Exception e) {
