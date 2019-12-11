@@ -69,9 +69,9 @@ public class ImageManager {
 		draw_Background(Frame); // 배경을 그리는 함수
 		drawItem(Frame, 110, 370, 0); // 특수효과를 그리는 함수
 		drawItem(Frame, 10, 138, 1);
-		drawItem(Frame, 200, 70, 2);
+		drawItem(Frame, 200, 66, 2);
 		drawItem(Frame, 500, 55, 3);
-		drawItem(Frame, 750, 165, 4);
+		drawItem(Frame, 750, 160, 4);
 		drawItem(Frame, 750, 345, 5);
 		drawDog(Frame, st2_Dog1.ox, st2_Dog1.oy, st2_Dog1);
 		drawDog(Frame, st2_Dog2.ox, st2_Dog2.oy, st2_Dog2);
@@ -163,12 +163,13 @@ public class ImageManager {
 	 * @param dg       Obstacle An object with x and y coordinates
 	 */
 	public void drawDog(ImageObserver Frame, int dx, int dy, Obstacle dg) {
-		dg.crush();
+//		dg.crush();
 		dg.move();
 		gc.drawImage(dog, dx, dy, Frame);
 	}
 	
 	public void drawIcicle(ImageObserver Frame, int dx, int dy, Icicle ice) {
+		ice.crush();
 		ice.move();
 		gc.drawImage(icicle, dx, dy, Frame);
 	}

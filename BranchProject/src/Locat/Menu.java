@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,24 +31,29 @@ public class Menu extends JPanel {
 	private ImageIcon exitButtonBasicImage = new ImageIcon(
 			getClass().getClassLoader().getResource("images/exitButtonBasic.png"));
 
-	private JButton startButton = new JButton(startButtonBasicImage); // ¹öÆ° °´Ã¼
+	private JButton startButton = new JButton(startButtonBasicImage); // ë²„íŠ¼ ê°ì²´
 	private JButton continueButton = new JButton(continueButtonBasicImage);
 	private JButton exitButton = new JButton(exitButtonBasicImage);
 
+	ImageIcon musicImage = new ImageIcon(getClass().getClassLoader().getResource("images/music.png"));
+	ImageIcon musicMuteImage = new ImageIcon(getClass().getClassLoader().getResource("images/musicMute.png"));
+	JCheckBox bgmMute = new JCheckBox(musicImage);
+	Music introMusic;
+	
 	private Image screenImage;
-	private Graphics screenGraphic; // ´õºí¹öÆÛ¸µÀ» À§ÇØ ÀüÃ¼È­¸é¿¡ ´ëÇÑ ÀÌ¹ÌÁö¸¦ ´ãÀ½
+	private Graphics screenGraphic; // ë”ë¸”ë²„í¼ë§ì„ ìœ„í•´ ì „ì²´í™”ë©´ì— ëŒ€í•œ ì´ë¯¸ì§€ë¥¼ ë‹´ìŒ
 	private Image background = new ImageIcon(getClass().getClassLoader().getResource("images/backImage.png"))
-			.getImage();// ÀÌ¹ÌÁö¸¦ ´ãÀ» ¼ö ÀÖ´Â °´Ã¼ ¼±¾ğ ÈÄ ÀÌ¹ÌÁö °¡Á®¿À±â
+			.getImage();// ì´ë¯¸ì§€ë¥¼ ë‹´ì„ ìˆ˜ ìˆëŠ” ê°ì²´ ì„ ì–¸ í›„ ì´ë¯¸ì§€ ê°€ì ¸ì˜¤ê¸°
 	private int mouseX, mouseY;
 
 	public Menu() {
 		setSize(MainFrame.SCREEN_WIDTH, MainFrame.SCREEN_HEIGHT);
-		setVisible(true); // Ã¢ º¸ÀÏ ¼ö ÀÖ°Ô ¼³Á¤
-		setBackground(new Color(0, 0, 0, 0)); // ÆäÀÎÆ® ÄÄÆ÷³ÍÆ®¸¦ ÇßÀ»¶§ ¹è°æÀÌ ÇÏ¾á»öÀ¸·Î ¹Ù²ñ
-		setLayout(null);// ¹öÆ°À» ¿øÇÏ´Â À§Ä¡¿¡ »ğÀÔÇÏ·Á°í
+		setVisible(true); // ì°½ ë³´ì¼ ìˆ˜ ìˆê²Œ ì„¤ì •
+		setBackground(new Color(0, 0, 0, 0)); // í˜ì¸íŠ¸ ì»´í¬ë„ŒíŠ¸ë¥¼ í–ˆì„ë•Œ ë°°ê²½ì´ í•˜ì–€ìƒ‰ìœ¼ë¡œ ë°”ë€œ
+		setLayout(null);// ë²„íŠ¼ì„ ì›í•˜ëŠ” ìœ„ì¹˜ì— ì‚½ì…í•˜ë ¤ê³ 
 		setFocusable(true);
 		
-		Music introMusic=new Music("introMusic.mp3",true);//¸ŞÀÎ È­¸é¿¡¼­ À½¾Ç ½ÃÀÛ
+		introMusic=new Music("introMusic.mp3",true);//ë©”ì¸ í™”ë©´ì—ì„œ ìŒì•… ì‹œì‘
 		introMusic.start();
 		setComponents();
 	}
@@ -55,16 +63,34 @@ public class Menu extends JPanel {
 		setMenuBar();
 	}
 
-	public void setButton() { // °ÔÀÓ½ÃÀÛ, °ÔÀÓ·Îµù, ³ª°¡±â¹öÆ° ¼³Á¤
+	public void setButton() { // ê²Œì„ì‹œì‘, ê²Œì„ë¡œë”©, ë‚˜ê°€ê¸°ë²„íŠ¼ ì„¤ì •
+		bgmMute.setBounds(30,30,50,50);
+        bgmMute.setSelectedIcon(musicMuteImage);
+        bgmMute.setBorderPainted(false);// ï¿½âº» ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
+        bgmMute.setContentAreaFilled(false);// ï¿½âº» ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
+        bgmMute.setFocusPainted(false);
+        bgmMute.addItemListener(new ItemListener() {
+           //@SuppressWarnings("deprecation")
+           public void itemStateChanged(ItemEvent e) {
+              if(e.getStateChange() == ItemEvent.SELECTED) {
+                 introMusic.close();
+              }
+              else  {
+                 introMusic=new Music("introMusic.mp3",true);
+                 introMusic.start();
+              }
+           }
+        });
+        add(bgmMute);
 		startButton.setBounds(250, 330, 300, 50);
-		startButton.setBorderPainted(false);// ±âº» ¹öÆ°ÀÇ ¸ğ¾çÀ» ¾ø¾Ö±â
-		startButton.setContentAreaFilled(false);// ±âº» ¸ğ¾ç ¾ø¾Ö±â
+		startButton.setBorderPainted(false);// ê¸°ë³¸ ë²„íŠ¼ì˜ ëª¨ì–‘ì„ ì—†ì• ê¸°
+		startButton.setContentAreaFilled(false);// ê¸°ë³¸ ëª¨ì–‘ ì—†ì• ê¸°
 		startButton.setFocusPainted(false);
-		startButton.addMouseListener(new MouseAdapter() { // ¸¶¿ì½º ÀÌº¥Æ® Ã³¸®
+		startButton.addMouseListener(new MouseAdapter() { // ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ì²˜ë¦¬
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				startButton.setIcon(startButtonEnteredImage);
-				startButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // ¸¶¿ì½º ¿Ã¶ó°¬À»¶§ Ä¿¼­°¡ ¼Õ¸ğ¾çÀ¸·Î ¹Ù²î´Â°Å
+				startButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // ë§ˆìš°ìŠ¤ ì˜¬ë¼ê°”ì„ë•Œ ì»¤ì„œê°€ ì†ëª¨ì–‘ìœ¼ë¡œ ë°”ë€ŒëŠ”ê±°
 			}
 
 			@Override
@@ -75,22 +101,22 @@ public class Menu extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// °ÔÀÓ ½ÃÀÛÀÌº¥Æ® È­¸é ÀüÈ¯
+				// ê²Œì„ ì‹œì‘ì´ë²¤íŠ¸ í™”ë©´ ì „í™˜
 				MainFrame.currentStage = 1;
-				Main.mainFrame.changePanel(MainFrame.currentStage); // »õ·Î¿î Ã¢À¸·Î ÀüÈ¯
+				Main.mainFrame.changePanel(MainFrame.currentStage); // ìƒˆë¡œìš´ ì°½ìœ¼ë¡œ ì „í™˜
 			}
 		});
 		add(startButton);
 
 		continueButton.setBounds(246, 400, 300, 50);
-		continueButton.setBorderPainted(false);// ±âº» ¹öÆ°ÀÇ ¸ğ¾çÀ» ¾ø¾Ö±â
-		continueButton.setContentAreaFilled(false);// ±âº» ¸ğ¾ç ¾ø¾Ö±â
+		continueButton.setBorderPainted(false);// ê¸°ë³¸ ë²„íŠ¼ì˜ ëª¨ì–‘ì„ ì—†ì• ê¸°
+		continueButton.setContentAreaFilled(false);// ê¸°ë³¸ ëª¨ì–‘ ì—†ì• ê¸°
 		continueButton.setFocusPainted(false);
-		continueButton.addMouseListener(new MouseAdapter() { // ¸¶¿ì½º ÀÌº¥Æ® Ã³¸®
+		continueButton.addMouseListener(new MouseAdapter() { // ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ì²˜ë¦¬
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				continueButton.setIcon(continueButtonEnteredImage);
-				continueButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // ¸¶¿ì½º ¿Ã¶ó°¬À»¶§ Ä¿¼­°¡ ¼Õ¸ğ¾çÀ¸·Î ¹Ù²î´Â°Å
+				continueButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // ë§ˆìš°ìŠ¤ ì˜¬ë¼ê°”ì„ë•Œ ì»¤ì„œê°€ ì†ëª¨ì–‘ìœ¼ë¡œ ë°”ë€ŒëŠ”ê±°
 			}
 
 			@Override
@@ -101,20 +127,20 @@ public class Menu extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// °ÔÀÓ ·ÎµùÀÌº¥Æ®
+				// ê²Œì„ ë¡œë”©ì´ë²¤íŠ¸
 			}
 		});
 		add(continueButton);
 
 		exitButton.setBounds(246, 467, 300, 57);
-		exitButton.setBorderPainted(false);// ±âº» ¹öÆ°ÀÇ ¸ğ¾çÀ» ¾ø¾Ö±â
-		exitButton.setContentAreaFilled(false);// ±âº» ¸ğ¾ç ¾ø¾Ö±â
+		exitButton.setBorderPainted(false);// ê¸°ë³¸ ë²„íŠ¼ì˜ ëª¨ì–‘ì„ ì—†ì• ê¸°
+		exitButton.setContentAreaFilled(false);// ê¸°ë³¸ ëª¨ì–‘ ì—†ì• ê¸°
 		exitButton.setFocusPainted(false);
-		exitButton.addMouseListener(new MouseAdapter() { // ¸¶¿ì½º ÀÌº¥Æ® Ã³¸®
+		exitButton.addMouseListener(new MouseAdapter() { // ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ì²˜ë¦¬
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				exitButton.setIcon(exitButtonEnteredImage);
-				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // ¸¶¿ì½º ¿Ã¶ó°¬À»¶§ Ä¿¼­°¡ ¼Õ¸ğ¾çÀ¸·Î ¹Ù²î´Â°Å
+				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // ë§ˆìš°ìŠ¤ ì˜¬ë¼ê°”ì„ë•Œ ì»¤ì„œê°€ ì†ëª¨ì–‘ìœ¼ë¡œ ë°”ë€ŒëŠ”ê±°
 			}
 
 			@Override
@@ -131,16 +157,16 @@ public class Menu extends JPanel {
 		add(exitButton);
 	}
 
-	private void setMenuBar() { // ¸Ş´º¹Ù ¼³Á¤
+	private void setMenuBar() { // ë©”ë‰´ë°” ì„¤ì •
 		JLabel menuBar = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/menuBar.png")));
 		ImageIcon quitButtonImage = new ImageIcon(getClass().getClassLoader().getResource("images/quitButton.png"));
-		JButton quitButton = new JButton(quitButtonImage); // ¸Ş´º¹Ù ³ª°¡±â ¹öÆ°
+		JButton quitButton = new JButton(quitButtonImage); // ë©”ë‰´ë°” ë‚˜ê°€ê¸° ë²„íŠ¼
 
 		quitButton.setBounds(770, 0, 25, 25);
-		quitButton.setBorderPainted(false);// ±âº» ¹öÆ°ÀÇ ¸ğ¾çÀ» ¾ø¾Ö±â
-		quitButton.setContentAreaFilled(false);// ±âº» ¸ğ¾ç ¾ø¾Ö±â
+		quitButton.setBorderPainted(false);// ê¸°ë³¸ ë²„íŠ¼ì˜ ëª¨ì–‘ì„ ì—†ì• ê¸°
+		quitButton.setContentAreaFilled(false);// ê¸°ë³¸ ëª¨ì–‘ ì—†ì• ê¸°
 		quitButton.setFocusPainted(false);
-		quitButton.addMouseListener(new MouseAdapter() { // ¸¶¿ì½º ÀÌº¥Æ® Ã³¸®
+		quitButton.addMouseListener(new MouseAdapter() { // ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ì²˜ë¦¬
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.exit(0);
@@ -148,35 +174,35 @@ public class Menu extends JPanel {
 		});
 		add(quitButton);
 
-		menuBar.setBounds(0, 0, 800, 20); // ¸Ş´º¹Ù
-		menuBar.addMouseListener(new MouseAdapter() { // ¸¶¿ì½º ÀÌº¥Æ® Ã³¸®
+		menuBar.setBounds(0, 0, 800, 20); // ë©”ë‰´ë°”
+		menuBar.addMouseListener(new MouseAdapter() { // ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ì²˜ë¦¬
 			@Override
 			public void mousePressed(MouseEvent e) {
 				mouseX = e.getX();
 				mouseY = e.getY();
 			}
 		});
-		menuBar.addMouseMotionListener(new MouseMotionAdapter() { // ¸¶¿ì½º ÀÌº¥Æ® Ã³¸®
+		menuBar.addMouseMotionListener(new MouseMotionAdapter() { // ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ì²˜ë¦¬
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				int x = e.getXOnScreen();
 				int y = e.getYOnScreen();
-				setLocation(x - mouseX, y - mouseY); // ¸Ş´º¹Ù Àâ°í ÀÌµ¿ÇÒ¶§ Ã¢ À§Ä¡ º¯°æ
+				Main.mainFrame.setLocation(x - mouseX, y - mouseY); // ë©”ë‰´ë°” ì¡ê³  ì´ë™í• ë•Œ ì°½ ìœ„ì¹˜ ë³€ê²½
 			}
 		});
 		add(menuBar);
 	}
 
-	public void paint(Graphics g) { // °ÔÀÓÃ¢¿¡ ½ºÅ©¸° ÀÌ¹ÌÁö ºÒ·¯¿À±â
-		screenImage = createImage(MainFrame.SCREEN_WIDTH, MainFrame.SCREEN_HEIGHT); // ½ºÅ©¸° Å©±â¸¸Å­ ÀÌ¹ÌÁö »ı¼º
+	public void paint(Graphics g) { // ê²Œì„ì°½ì— ìŠ¤í¬ë¦° ì´ë¯¸ì§€ ë¶ˆëŸ¬ì˜¤ê¸°
+		screenImage = createImage(MainFrame.SCREEN_WIDTH, MainFrame.SCREEN_HEIGHT); // ìŠ¤í¬ë¦° í¬ê¸°ë§Œí¼ ì´ë¯¸ì§€ ìƒì„±
 		screenGraphic = screenImage.getGraphics();
-		screenDraw(screenGraphic);// ½ºÅ©¸°¿¡ ¹è°æÀÌ¹ÌÁö ±×¸®±â
-		g.drawImage(screenImage, 0, 0, null);// °ÔÀÓ Ã¢¿¡ ½ºÅ©¸° ÀÌ¹ÌÁö ±×¸®±â
+		screenDraw(screenGraphic);// ìŠ¤í¬ë¦°ì— ë°°ê²½ì´ë¯¸ì§€ ê·¸ë¦¬ê¸°
+		g.drawImage(screenImage, 0, 0, null);// ê²Œì„ ì°½ì— ìŠ¤í¬ë¦° ì´ë¯¸ì§€ ê·¸ë¦¬ê¸°
 	}
 
-	public void screenDraw(Graphics g) {// ½ºÅ©¸°¿¡ ¹öÆ°ÀÌ¹ÌÁö, ½ºÅ©¸° ÀÌ¹ÌÁö ±×¸®±â
-		g.drawImage(background, 0, 0, null); // ½ºÅ©¸°ÀÌ¹ÌÁö¿¡ ÀÌ¹ÌÁö ±×·Á³Ö±â ÇÔ¼ö
-		paintComponents(g); // ¹öÆ° ÀÌ¹ÌÁö ±×·Á³Ö´Â ÇÔ¼ö
-		this.repaint(); // ÀüÃ¼ È­¸é ÀÌ¹ÌÁö¸¦ ¸Å¼ø°£¸¶´Ù °è¼Ó ¹İº¹ÇØ¼­ ±×·ÁÁÖ´Â °Í
+	public void screenDraw(Graphics g) {// ìŠ¤í¬ë¦°ì— ë²„íŠ¼ì´ë¯¸ì§€, ìŠ¤í¬ë¦° ì´ë¯¸ì§€ ê·¸ë¦¬ê¸°
+		g.drawImage(background, 0, 0, null); // ìŠ¤í¬ë¦°ì´ë¯¸ì§€ì— ì´ë¯¸ì§€ ê·¸ë ¤ë„£ê¸° í•¨ìˆ˜
+		paintComponents(g); // ë²„íŠ¼ ì´ë¯¸ì§€ ê·¸ë ¤ë„£ëŠ” í•¨ìˆ˜
+		this.repaint(); // ì „ì²´ í™”ë©´ ì´ë¯¸ì§€ë¥¼ ë§¤ìˆœê°„ë§ˆë‹¤ ê³„ì† ë°˜ë³µí•´ì„œ ê·¸ë ¤ì£¼ëŠ” ê²ƒ
 	}
 }

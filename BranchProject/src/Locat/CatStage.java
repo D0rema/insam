@@ -77,6 +77,30 @@ public class CatStage extends JPanel implements Runnable {
 	public void update(Graphics g) {
 		imageManager.update(g, buffimg, this);
 	}
+	public void checkBoundary() {
+		if (y <= 0) {
+			playerMove = false;
+			not_key = 1;
+		}
+		if (y >= 520) {
+			playerMove = false;
+			not_key = 2;
+		}
+
+		if (x <= 16) {
+			playerMove = false;
+			not_key = 3;
+		}
+
+		if (x >= 744) {
+			playerMove = false;
+			not_key = 4;
+		}
+		if (y >= 48 && y <= 484 && x <= 744 && x >= 16) {
+			not_key = 0;
+		}
+
+	}
 
 	/**
 	 * ck_check is a method that checks if all items are eaten.
@@ -136,8 +160,7 @@ public class CatStage extends JPanel implements Runnable {
 
 		CatStage.x = 20;
 		CatStage.y = 400;
-		cnt=0;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < item[stage-1].length; i++) {
 			CatStage.item[stage-1][i] = true;
 		}
 		for (int j = 0; j < 3; j++) {
@@ -157,7 +180,7 @@ public class CatStage extends JPanel implements Runnable {
 				repaint();
 
 				block.check();
-				block.checkBoundary();
+				checkBoundary();
 
 				Thread.sleep(20);
 				cnt++;
@@ -169,7 +192,13 @@ public class CatStage extends JPanel implements Runnable {
 				}
 
 				if (!itemCheck()) {
+					if(stage==2) {
+						System.exit(0);
+					}
 					setInit();
+					cnt=0;
+					jp1 = 0;
+					jp2 = 0;
 					stage = 2;
 
 				}
