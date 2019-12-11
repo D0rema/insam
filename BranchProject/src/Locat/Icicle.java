@@ -1,6 +1,6 @@
 package Locat;
 
-public class Icicle {
+public class Icicle extends Obstacle {
 	int ix, iy, initX,initY;
 	int distance;
 

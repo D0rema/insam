@@ -17,14 +17,14 @@ public class ImageManager {
 	Image icicle = new ImageIcon(getClass().getClassLoader().getResource("images/icicle.png")).getImage();
 	
 	
-	Obstacle st1_Dog1 = new Obstacle(150, 155, 100);
-	Obstacle st1_Dog2 = new Obstacle(560, 110, 80);
+	Dog st1_Dog1 = new Dog(150, 155, 100);
+	Dog st1_Dog2 = new Dog(560, 110, 80);
 	//stage1
 	
-	Obstacle st2_Dog1 = new Obstacle(100, 355, 80);
-	Obstacle st2_Dog2 = new Obstacle(67, 50, 70);
-	Obstacle st2_Dog3 = new Obstacle(605, 150, 65);
-	Obstacle st2_Dog4 = new Obstacle(515, 395, 75);
+	Dog st2_Dog1 = new Dog(100, 355, 80);
+	Dog st2_Dog2 = new Dog(67, 50, 70);
+	Dog st2_Dog3 = new Dog(605, 150, 65);
+	Dog st2_Dog4 = new Dog(515, 395, 75);
 	Icicle icicle1 = new Icicle(135,255,125);
 	Icicle icicle2 = new Icicle(180,130,70);
 	Icicle icicle3 = new Icicle(420,140,110);
@@ -162,8 +162,8 @@ public class ImageManager {
 	 * @param distance int Determine how far you want to move
 	 * @param dg       Obstacle An object with x and y coordinates
 	 */
-	public void drawDog(ImageObserver Frame, int dx, int dy, Obstacle dg) {
-//		dg.crush();
+	public void drawDog(ImageObserver Frame, int dx, int dy, Dog dg) {
+		dg.crush();
 		dg.move();
 		gc.drawImage(dog, dx, dy, Frame);
 	}
