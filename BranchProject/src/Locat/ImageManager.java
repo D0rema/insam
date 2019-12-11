@@ -152,7 +152,7 @@ public class ImageManager {
 	}
 
 	/**
-	 * The draw_dog1 method draws the Obstacle(dog) and contains the collision
+	 * The drawDog method draws the Obstacle(Dog) and contains the collision
 	 * information
 	 *
 	 * @author ChagngSeok-Lee
@@ -167,7 +167,11 @@ public class ImageManager {
 		dg.move();
 		gc.drawImage(dog, dx, dy, Frame);
 	}
-	
+	/**
+	 * The drawDog method draws the Obstacle(Icicle) and contains the collision
+	 * 
+	 * @author ChagngSeok-Lee
+	 */
 	public void drawIcicle(ImageObserver Frame, int dx, int dy, Icicle ice) {
 		ice.crush();
 		ice.move();
@@ -175,7 +179,7 @@ public class ImageManager {
 	}
 
 	/**
-	 * The checkmark method draws a map based on the state of the item.
+	 * The drawItem method draws a map based on the state of the item.
 	 * 
 	 * @author ChagngSeok-Lee
 	 * @param Frame   ImageObserver

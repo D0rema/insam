@@ -1,9 +1,22 @@
 package Locat;
-
+/**
+ * The Icicle class is for giving coordinates to Icicle.
+ * 
+ * @author ChangSeok-Lee
+ *
+ */
 public class Icicle extends Obstacle {
+	/**The coordinate of icicle*/
 	int ix, iy, initX,initY;
 	int distance;
-
+/**
+ * 
+ * Constructor Description of Icicle
+ * 
+ * @param ix The initial x coordinate of the Icicle.
+ * @param iy The initial x coordinate of the Icicle.
+ * @param distance Set the distance to move
+ */
 	Icicle(int ix, int iy, int distance) {
 		this.ix = ix;
 		this.iy = iy;
@@ -11,6 +24,9 @@ public class Icicle extends Obstacle {
 		this.initY = iy;
 		this.distance = distance;
 	}
+	/**
+	 * Determine if the cat and the obstacle have hit
+	 */
 	public void move() {
 		
 		iy+=2;
@@ -19,6 +35,9 @@ public class Icicle extends Obstacle {
 		}
 		
 	}
+	/**
+	 * Change Icicle's coordinates
+	 */
 	public void crush() {
 		if ((ix - 30 <= CatStage.x && ix + 15 >= CatStage.x)
 				&& (iy - 20 <= CatStage.y && iy + 10 >= CatStage.y)) {

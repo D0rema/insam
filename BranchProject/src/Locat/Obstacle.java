@@ -1,7 +1,7 @@
 package Locat;
 
 /**
- * The obstacle class is for giving coordinates to obstacles.
+ * The Obstacle class is abstract class for obstacle(dog, icicle etc).
  * 
  * @author ChagngSeok-Lee
  *

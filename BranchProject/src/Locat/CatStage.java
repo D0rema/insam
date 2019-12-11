@@ -42,6 +42,7 @@ public class CatStage extends JPanel implements Runnable {
 	 * @author All
 	 */
 	public CatStage() {// ���ο� �����ӻ���
+		gameSave.save();
 		setSize(MainFrame.SCREEN_WIDTH, MainFrame.SCREEN_HEIGHT);
 		init();
 		addKeyListener(new CatStageKey());
@@ -61,14 +62,7 @@ public class CatStage extends JPanel implements Runnable {
 		// 0 : ����, 1 : ������, 2 : �Ʒ���, 3 : ����
 	}
 	
-	public void drawItem(ImageObserver Frame, int cx, int cy, int ckindex) {
-		if ((cx - 15 <= CatStage.x && cx + 15 >= CatStage.x) && (cy - 15 <= CatStage.y && cy + 15 >= CatStage.y)) {
-			CatStage.item[stage-1][ckindex] = false;
-
-		}
-
-	}
-
+	
 	public void paint(Graphics g) {
 		buffimg = createImage(800, 600);
 		imageManager.paint(g, buffimg, this);
@@ -103,7 +97,7 @@ public class CatStage extends JPanel implements Runnable {
 	}
 
 	/**
-	 * ck_check is a method that checks if all items are eaten.
+	 * itemCheck is a method that checks if all items are eaten.
 	 * 
 	 * @author ChagngSeok-Lee
 	 * @return True if the item has been consumed otherwise returns false.
@@ -123,7 +117,7 @@ public class CatStage extends JPanel implements Runnable {
 	}// �������� ��� �Ծ����� Ȯ���ϴ� �޼ҵ�
 
 	/**
-	 * lck_check is a method that checks if all life is exhausted.
+	 * lifeCheck is a method that checks if all life is exhausted.
 	 * 
 	 * @author ChagngSeok-Lee
 	 * @return True if the life is exhausted, false otherwise.

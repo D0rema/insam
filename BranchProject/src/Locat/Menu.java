@@ -127,7 +127,7 @@ public class Menu extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// 게임 로딩이벤트
+				Main.mainFrame.changePanel(gameSave.loading());
 			}
 		});
 		add(continueButton);

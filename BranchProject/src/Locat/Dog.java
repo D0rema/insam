@@ -13,9 +13,9 @@ public class Dog extends Obstacle {
  * Constructor Description of Dog
  * 
  * @author ChangSeok-Lee
- * @param ox The x coordinate of the Dog.
- * @param oy The y coordinate of the Dog.
- * 
+ * @param ox The initial x coordinate of the Dog.
+ * @param oy The initial y coordinate of the Dog.
+ * @parm distance Set the distance to move
  */
 	public Dog(int ox, int oy, int distance) {
 		
@@ -23,6 +23,9 @@ public class Dog extends Obstacle {
 		this.oy = oy;
 		this.distance=distance;
 	}
+	/**
+	 * Determine if the cat and the obstacle have hit
+	 */
 	public void crush() {
 		if ((ox - 10 <= CatStage.x && ox + 30 >= CatStage.x)
 				&& (oy - 10 <= CatStage.y && oy + 10 >= CatStage.y)) {
@@ -40,6 +43,9 @@ public class Dog extends Obstacle {
 		}
 		
 	}
+	/**
+	 * Change Dog's coordinates
+	 */
 	public void move() {
 		if ((CatStage.cnt / distance) % 2 == 0) {
 			ox = ox + 2;
