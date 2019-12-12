@@ -2,14 +2,19 @@ package Locat;
 
 /**
  * 
- * @author chlau A class for implementing puzzles.
+ * @author ChoiMyeongKyu
+ *  A class for implementing iceloadpuzzles.
  */
 public class IceLoadPuzzle {
 
 	public void solvePuzzle() {
 		slide();
 	}
-	
+	/**
+	 * 
+	 * @author ChoiMyeongKyu
+	 *  Sliding function when on ice
+	 */
 	public void slide() {
 		if(CatStage.x>800) {
 			CatStage.clearflag4=true;

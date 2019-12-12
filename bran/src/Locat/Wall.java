@@ -4,7 +4,7 @@ package Locat;
  * 
  * @author chlmyeongkyu
  * 
- *         This class is for implementing flat and walls.
+ *         This class when iceloadstage implementing flat and walls.
  *
  */
 public class Wall {
@@ -14,8 +14,8 @@ public class Wall {
 		onIwall();
 	}
 	/**
-	 * Calls the is_bottom () and in_flat () functions and flat the range of
-	 * scaffolding.
+	 * The mark of the preset wall.
+	 * 
 	 */
 	public void checkWall() {
 		iceWall[0] = new int[] { 64, 120, 120, 164, 240, 120, 100, 172, 240, 452, 520, 300, 168, 240, 376, 232, 300,
@@ -32,7 +32,10 @@ public class Wall {
 		iceWall[7] = new int[] { 88, 508, 568, 508, 568, 384 };
 		
 	}
-
+	/**
+	 * When character touch the wall prevent going wall direction anymore 
+	 * 
+	 */
 	public void onIwall() {
 		for (int i = 0; i < iceWall[4].length / 2; i++) {
 			if (CatStage.x == iceWall[4][(2 * i) + 0] && CatStage.y == iceWall[4][(2 * i) + 1]) {

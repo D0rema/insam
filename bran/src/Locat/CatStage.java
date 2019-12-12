@@ -6,37 +6,51 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 public class CatStage extends JPanel implements Runnable {
-	public static int stage = 1;
+	/**stage number*/
+	public static int stage = 3;
 	/** variable for checking character direction */
 	public static boolean playerMove = false;
 	/** character position */
-	public static int x, y; // �ɸ����� ���� ��ǥ�� ���� ����
+	public static int x, y; 
 	/** gravity variable */
-	public static int g_y; // �߷��� üũ�ϱ� ���� ��ǥ
+	public static int g_y; 
 	/** thread time counter */
-	public static int cnt; // ���� ������ ī���� �ϱ� ���� ����
+	public static int cnt; 
 	/** variable for checking character direction */
-	public static int moveStatus; // �ɸ��Ͱ� ��� �ٶ󺸴��� ������ ���� ����
+	public static int moveStatus; 
 	/** jumping variable */
-	public static int jp1, jp2; // ���� cnt�� ����ϱ� ���� ��
+	public static int jp1, jp2; 
 	/** jumping variable */
-	public static boolean try_jump = false;// ������ �� �߷� ���¸� ���� ����
+	public static boolean try_jump = false;
 	/** status of items */
-	public static boolean[][] item = { { true, true, true, true }, { true, true, true, true, true, true } };// ȹ���ؾ��ϴ�
-																											// �����۵���
-																											// ����
+	public static boolean[][] item = { { true, true, true, true }, { true, true, true, true, true, true } };
 	public static int charLocation = 0;
 	/** status of life */
-	public static boolean[] life = { true, true, true };// ������ üũ�� ���� ����
+	public static boolean[] life = { true, true, true };
+	/**prevent keypressed*/
 	public static int not_key = 0;
+	/**prevent upkey*/
 	public static int notUp = 1;
+	/**prevent Downkey*/
 	public static int notDown = 1;
+	/**prevent rightkey*/
 	public static int notRight = 0;
+	/**prevent leftkey*/
 	public static int notLeft = 1;
+	/**findload stage character location*/
 	public static int char_lo = 0;
+	/**findload stage character mark check 
+	 * fload1 = current loaction
+	 * fload2 = past loction
+	 * fload3 = fload2*10+fload1
+	 * fload4 = past fload3
+	 * fload5 = current fload3*/
 	public static int fload1 = 0, fload2 = 0, fload3 = 0, fload4 = 0, fload5;
-	public static boolean clearflag1 = false, clearflag2 = false, clearflag3 = false, clearflag4 = false;
+	/**human stage clear flag*/
+	public static boolean clearflag3 = false, clearflag4 = false;
+	/**human stage When it fails or when the key is pressed reset=true*/
 	public static boolean reset = false;
+	/**iceload puzzle boolean */
 	public static boolean sliding = true;
 
 	ImageManager imageManager = new ImageManager();
@@ -52,7 +66,7 @@ public class CatStage extends JPanel implements Runnable {
 	 *
 	 * @author All
 	 */
-	public CatStage() {// ���ο� �����ӻ���
+	public CatStage() {
 		gameSave.save();
 		setSize(MainFrame.SCREEN_WIDTH, MainFrame.SCREEN_HEIGHT);
 		init();
@@ -72,19 +86,19 @@ public class CatStage extends JPanel implements Runnable {
 	 */
 	public void init() {
 		if (stage == 1 || stage == 2) {
-			x = 20;// �����Ҷ� ĳ������ ��ǥ
-			y = 436;// �����Ҷ� ĳ������ ��ǥ
+			x = 20;
+			y = 436;
 		}
 		if (stage == 3) {
-			x = 528;// �����Ҷ� ĳ������ ��ǥ
-			y = 124;// �����Ҷ� ĳ������ ��ǥ
+			x = 528;
+			y = 124;
 		}
 		if (stage == 4) {
-			x = 0;// �����Ҷ� ĳ������ ��ǥ
-			y = 316;// �����Ҷ� ĳ������ ��ǥ
+			x = 0;
+			y = 316;
 		}
 
-		// 0 : ����, 1 : ������, 2 : �Ʒ���, 3 : ����
+		
 	}
 
 	public void paint(Graphics g) {
@@ -120,34 +134,34 @@ public class CatStage extends JPanel implements Runnable {
 		}
 
 	}
-
+	
 	public void humanCheckBoundary() {
 
-		if (CatStage.y <= 60) {
-			CatStage.playerMove = false;
-			CatStage.notUp = 1;
+		if (y <= 60) {
+			playerMove = false;
+			notUp = 1;
 		}
 
-		if (CatStage.y >= 508) {
-			CatStage.playerMove = false;
-			CatStage.notDown = 1;
+		if (y >= 508) {
+			playerMove = false;
+			notDown = 1;
 		}
 
-		if (CatStage.x <= 60) {
-			CatStage.playerMove = false;
-			CatStage.notLeft = 1;
+		if (x <= 60) {
+			playerMove = false;
+			notLeft = 1;
 		}
 
-		if (CatStage.x >= 568) {
-			CatStage.playerMove = false;
-			CatStage.notRight = 1;
+		if (x >= 568) {
+			playerMove = false;
+			notRight = 1;
 		}
 		if (stage == 3) {
-			if (CatStage.y > 60 && CatStage.y < 508 && CatStage.x < 568 && CatStage.x > 60) {
-				CatStage.notUp = 0;
-				CatStage.notDown = 0;
-				CatStage.notLeft = 0;
-				CatStage.notRight = 0;
+			if (y > 60 && y < 508 && x < 568 && x > 60) {
+				notUp = 0;
+				notDown = 0;
+				notLeft = 0;
+				notRight = 0;
 			}
 		}
 	}
@@ -169,7 +183,7 @@ public class CatStage extends JPanel implements Runnable {
 			return false;
 		else
 			return true;
-	}// �������� ��� �Ծ����� Ȯ���ϴ� �޼ҵ�
+	}
 
 	/**
 	 * lifeCheck is a method that checks if all life is exhausted.
@@ -182,10 +196,7 @@ public class CatStage extends JPanel implements Runnable {
 			return false;
 		else
 			return true;
-	}// �������� ��� ���������� Ȯ���ϴ� �Լ�
-	/*
-	 * public void puzzle_master() { z1.find_load(); }
-	 */
+	}
 
 	private Thread th;
 
@@ -194,7 +205,7 @@ public class CatStage extends JPanel implements Runnable {
 	 * 
 	 * @author All
 	 */
-	public void start() { // �⺻���� ���ó��
+	public void start() { 
 		th = new Thread(this);
 		th.start();
 	}
@@ -207,22 +218,22 @@ public class CatStage extends JPanel implements Runnable {
 	public void setInit() {
 		gameSave.save();
 		if (stage == 1 || stage == 2) {
-			x = 20;// �����Ҷ� ĳ������ ��ǥ
-			y = 436;// �����Ҷ� ĳ������ ��ǥ
+			x = 20;
+			y = 436;
 		}
 		if (stage == 3) {
-			x = 528;// �����Ҷ� ĳ������ ��ǥ
-			y = 124;// �����Ҷ� ĳ������ ��ǥ
+			x = 528;
+			y = 124;
 		}
 		if (stage == 4) {
-			x = 0;// �����Ҷ� ĳ������ ��ǥ
-			y = 316;// �����Ҷ� ĳ������ ��ǥ
+			x = 0;
+			y = 316;
 		}
 		for (int i = 0; i < item[stage - 1].length; i++) {
-			CatStage.item[stage - 1][i] = true;
+			item[stage - 1][i] = true;
 		}
 		for (int j = 0; j < 3; j++) {
-			CatStage.life[j] = true;
+			life[j] = true;
 		}
 	}
 
@@ -231,7 +242,7 @@ public class CatStage extends JPanel implements Runnable {
 	 * 
 	 * @author All
 	 */
-	public void run() { // ������ �޼ҵ�, ���� ����
+	public void run() { 
 		while (true) {
 			try {
 				if (stage == 1 | stage == 2) {

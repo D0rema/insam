@@ -3,7 +3,9 @@ package Locat;
 
 /**
  * 
- * @author chlau A class for implementing puzzles.
+ * @author ChoiMyeongKyu
+ * 
+ *  A class for implementing findloadpuzzles.
  */
 public class FindLoadPuzzle {
 	private int temp;
@@ -12,6 +14,9 @@ public class FindLoadPuzzle {
 	 * This variable contains the coordinates of the mark.
 	 */
 	private int mark[][];
+	/**
+	 * This variable is used to check for passing marks.
+	 */
 	private int loadmark[];
 
 	public FindLoadPuzzle() {
@@ -40,6 +45,7 @@ public class FindLoadPuzzle {
 
 	
 	/**
+	 * @author ChoiMyeongKyu
 	 * This function uses the coordinates of the mark to change the associated
 	 * variable whenever the character passes the mark.
 	 */
@@ -60,7 +66,10 @@ public class FindLoadPuzzle {
 			}
 		}
 	}
-
+	/**
+	 * @author ChoiMyeongKyu
+	 * This function resets when the mark passes through a non-road.
+	 */
 	public void findLoadReset() {
 		if (CatStage.fload1 == 1) {
 			if (CatStage.fload2 == 7 || CatStage.fload2 == 2 || CatStage.fload2 == 3

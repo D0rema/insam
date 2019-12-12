@@ -137,10 +137,10 @@ public class ImageManager {
 		gc.drawString(Integer.toString(CatStage.y), 500, 50);
 		gc.drawString(Integer.toString(CatStage.jp1), 350, 100);
 		gc.drawString(Integer.toString(CatStage.char_lo), 500, 100);
-		gc.drawString(Integer.toString(CatStage.notUp),350, 150);
-		gc.drawString(Integer.toString(CatStage.notDown),400, 150);
-		gc.drawString(Integer.toString(CatStage.notLeft),450, 150);
-		gc.drawString(Integer.toString(CatStage.notRight),500, 150);
+		gc.drawString(Integer.toString(CatStage.fload1),350, 150);
+		gc.drawString(Integer.toString(CatStage.fload2),400, 150);
+		gc.drawString(Integer.toString(CatStage.fload3),450, 150);
+		gc.drawString(Integer.toString(CatStage.fload4),500, 150);
 
 		// 위는 단순히 무한루프 적용여부와 케릭터 방향 체크를 위해
 		// 눈으로 보면서 테스트할 용도로 쓰이는 텍스트 표출입니다.
@@ -251,7 +251,12 @@ public class ImageManager {
 		} else
 			gc.drawImage(heart_x, lx, ly, Frame);
 	}
-
+	/**
+	 * This function draws a mark on the path when it reaches a predetermined coordinate.
+	 * and add variables to prevent the path back
+	 * @author ChioMyeongkyu
+	 * @param Frame ImageObserver
+	 */
 	public void checkMark(ImageObserver Frame) {
 		for (int i = 0; i < 14; i++) {
 			if (m[i] == 1) {
@@ -373,7 +378,11 @@ public class ImageManager {
 		}
 
 	}
-
+	/**
+	 * Reset when you pass the road again.
+	 * @author ChioMyeongkyu
+	 * 
+	 */
 	public void checkReset() {
 		for (int i = 0; i < 28; i++) {
 			if (c[i] == CatStage.fload3) {
@@ -381,22 +390,30 @@ public class ImageManager {
 			}
 		}
 	}
-
+	/**
+	 * Clear all the way passed.
+	 * @author ChioMyeongkyu
+	 * 
+	 */
 	public void clearStage1() {
 		cc1 = m[0] * m[1] * m[2] * m[3] * m[4] * m[5] * m[6] * m[7] * m[8] * m[9] * m[10] * m[11] * m[12] * m[13];
 		if (cc1 == 1) {
-			CatStage.clearflag3=true;
 			for(int i =0;i<14;i++) {
 				m[i]=0;
 			}
+			CatStage.clearflag3=true;
+
 			System.out.println("clear");
 		}
 	}
-
+	/**
+	 * When reset=true clear mark on map
+	 * @author ChioMyeongkyu
+	 * 
+	 */
 	public void resetMark() {
 		if (CatStage.reset == true) {
-			for (int i = 0; i < 14; i++) {
-				
+			for (int i = 0; i < 14; i++) {		
 				m[i] = 0;
 			}
 			
