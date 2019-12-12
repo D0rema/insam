@@ -42,7 +42,6 @@ public class FindLoadPuzzle {
 		findLoad();
 		findLoadReset();
 	}
-
 	
 	/**
 	 * @author ChoiMyeongKyu

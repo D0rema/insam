@@ -5,6 +5,13 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
+/**
+ * 
+ * Stage class
+ * 
+ * @author -------------------------------------
+ *
+ */
 public class Stage extends JPanel implements Runnable {
 	/**stage number*/
 	public static int stage = 3;
@@ -16,7 +23,7 @@ public class Stage extends JPanel implements Runnable {
 	public static int g_y; 
 	/** thread time counter */
 	public static int cnt; 
-	/** variable for checking character direction */
+	/** variable for checking character is moving */
 	public static int moveStatus; 
 	/** jumping variable */
 	public static int jp1, jp2; 
@@ -24,6 +31,7 @@ public class Stage extends JPanel implements Runnable {
 	public static boolean try_jump = false;
 	/** status of items */
 	public static boolean[][] item = { { true, true, true, true }, { true, true, true, true, true, true } };
+	/** findloadpuzzle current mark location */
 	public static int charLocation = 0;
 	/** status of life */
 	public static boolean[] life = { true, true, true };
@@ -109,7 +117,11 @@ public class Stage extends JPanel implements Runnable {
 	public void update(Graphics g) {
 		imageManager.update(g, buffimg, this);
 	}
-
+	/**
+	 * prevent character leaving boundary
+	 *
+	 * @author JiSeongChoi
+	 */
 	public void checkBoundary() {
 		if (y <= 0) {
 			playerMove = false;
@@ -134,7 +146,11 @@ public class Stage extends JPanel implements Runnable {
 		}
 
 	}
-	
+	/**
+	 * prevent character leaving boundary
+	 *
+	 * @author ChoiMyeongKyu
+	 */
 	public void humanCheckBoundary() {
 
 		if (y <= 60) {

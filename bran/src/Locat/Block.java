@@ -1,22 +1,23 @@
 package Locat;
 
 /**
- * class to check block and if character leaves map
+ * class to check block
  *
  * @author JiSeongChoi
  */
 public class Block {
-	/** total of blocks */
-	int block_Count[] = { 9, 12 };// 플랫의 갯수
+	/** Array of number Of Blocks in each Stages */
+	int block_Count[] = { 9, 12 };// 블록의 갯수
+	/** Maximum number in block_Count */
 	final int MAXBLOCKCOUNT = 12;
-	/** blockArray */
-	int blocks[][][];// 플랫의 함수 [0] 발판의 시작x값 [1] 발판의 끝 x값 [2] 발판의 y값 [3] 우선 y값인데 미정 사라질수도 있음
+	/** block Array */
+	int blocks[][][]; // 블록들의 주소가 저장된 배열
 
 	/** variable for checking if character is floating air */
 	public int on_block = 0;// 발판을 밟을때 ture가 되어 바닥이 발판의 y값으로 변함
 	/** variable for checking if character is on block */
-	public int on_bottom = 0; // 기본적인 바닥 여기서는 472로 고정
-	/** current block */
+	public int on_bottom = 0; // 기본적인 바닥 여기서는 508로 고정
+	/** y value of current block */
 	public int currentBlock; // 현재 밟고 있는 발판의 y값을 지정하기 위해 필요한 함수
 
 	/**
@@ -157,7 +158,8 @@ public class Block {
 	public void on_Block() { // 발판일때 체크하는 함수
 		for (int i = 0; i < block_Count[Stage.stage - 1]; i++) { // 모든 발판을 체크
 			if (blocks[Stage.stage - 1][i][0] < Stage.x && blocks[Stage.stage - 1][i][1] > Stage.x
-					&& blocks[Stage.stage - 1][i][2] == Stage.y) { // 현재 캐릭터의
+					&& blocks[Stage.stage - 1][i][2] == Stage.y) {
+				// 현재 캐릭터의
 				// 좌표가 발판 좌표
 				// 안에 있는지 체크
 				// i로 모든 발판

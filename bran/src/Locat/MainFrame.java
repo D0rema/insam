@@ -13,21 +13,28 @@ public class MainFrame extends JFrame {
 	Menu menu = new Menu();
 
 	public MainFrame() {
-		setUndecorated(true);// ÀüÃ¼È­¸é (¸Þ´º¹Ù¾ø¾Ö±â)
+		setUndecorated(true);// ï¿½ï¿½Ã¼È­ï¿½ï¿½ (ï¿½Þ´ï¿½ï¿½Ù¾ï¿½ï¿½Ö±ï¿½)
 		setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		setTitle("Lost Cat");
-		setResizable(false);// °ÔÀÓ Ã¢ Å©±â °íÁ¤
+		setResizable(false);// ï¿½ï¿½ï¿½ï¿½ Ã¢ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		setLocationRelativeTo(null);
-		setBackground(new Color(0, 0, 0, 0)); // ÆäÀÎÆ® ÄÄÆ÷³ÍÆ®¸¦ ÇßÀ»¶§ ¹è°æÀÌ ÇÏ¾á»öÀ¸·Î ¹Ù²ñ
-		setLayout(null);// ¹öÆ°À» ¿øÇÏ´Â À§Ä¡¿¡ »ðÀÔÇÏ·Á°í
+		setBackground(new Color(0, 0, 0, 0)); // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½
+		setLayout(null);// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setContentPane(menu);
 		panelNumber = 0;
 
-		setVisible(true); // Ã¢ º¸ÀÏ ¼ö ÀÖ°Ô ¼³Á¤
+		setVisible(true); // Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 
+	/** 
+	 * change Panel in Frame
+	 * 
+	 * @author JiSeongChoi
+	 * 
+	 * @param num number of current stage
+	 */
 	public void changePanel(int num) {
 		switch (num) {
 		case 0: {
@@ -37,7 +44,6 @@ public class MainFrame extends JFrame {
 			getContentPane().requestFocus();
 			invalidate();
 			repaint();
-			
 			
 			Stage.clearflag4=false;
 			break;
@@ -51,6 +57,5 @@ public class MainFrame extends JFrame {
 			break;
 		}
 		}
-
 	}
 }
