@@ -14,9 +14,9 @@ public class Block {
 	int blocks[][][]; // 블록들의 주소가 저장된 배열
 
 	/** variable for checking if character is floating air */
-	public int on_block = 0;// 발판을 밟을때 ture가 되어 바닥이 발판의 y값으로 변함
+	public int on_Block = 0;// 발판을 밟을때 ture가 되어 바닥이 발판의 y값으로 변함
 	/** variable for checking if character is on block */
-	public int on_bottom = 0; // 기본적인 바닥 여기서는 508로 고정
+	public int on_Bottom = 0; // 기본적인 바닥 여기서는 508로 고정
 	/** y value of current block */
 	public int currentBlock; // 현재 밟고 있는 발판의 y값을 지정하기 위해 필요한 함수
 
@@ -129,21 +129,21 @@ public class Block {
 	 * @author JiSeongChoi
 	 */
 	public void is_bottom() { // 중력을 만들기 위한 함수
-		if (on_block == 0) { // 발판에 닿지 않을때는 항상 바닥은 472
+		if (on_Block == 0) { // 발판에 닿지 않을때는 항상 바닥은 472
 			Stage.g_y = 520;
 		}
 		if (!Stage.try_jump || Ladder.on_Ladder_Flag) { // 점프할때는 중력 적용 x
 			if (Stage.y >= Stage.g_y) { // g_y 발판일때 바뀔수 있기때문에 변수로 생성
-				on_bottom = 1; // 캐릭터가 바닥에 닿았을때 1
+				on_Bottom = 1; // 캐릭터가 바닥에 닿았을때 1
 			} else if (Stage.y < Stage.g_y && Ladder.on_Ladder_Flag) {
 				if (Ladder.using_Ladder)
-					on_bottom = 1;
+					on_Bottom = 1;
 				else
-					on_bottom = 0;
+					on_Bottom = 0;
 			} else {
-				on_bottom = 0;
+				on_Bottom = 0;
 			}
-			if (on_bottom == 0) { // 바닥에 닿지 않았을때는 항상 떨어짐
+			if (on_Bottom == 0) { // 바닥에 닿지 않았을때는 항상 떨어짐
 				Ladder.using_Ladder = false;
 				Stage.y += 12;
 			}
@@ -165,12 +165,12 @@ public class Block {
 				// i로 모든 발판
 				// 체크
 
-				on_block = 1; // 발판 좌표 안에 있으면 발판을 밟고 있을때 1
+				on_Block = 1; // 발판 좌표 안에 있으면 발판을 밟고 있을때 1
 				currentBlock = i; // 그때의 값을 저장해 아래에 사용
 				Stage.g_y = blocks[Stage.stage - 1][currentBlock][2]; // 현재 밝고있는 발판의 y값을 바닥으로 사용
 			} else if (blocks[Stage.stage - 1][currentBlock][0] > Stage.x
 					|| blocks[Stage.stage - 1][currentBlock][1] < Stage.x) {
-				on_block = 0;// 현재(ff로 구분) 밟고 있는 발판의 x값에 벗어나면 발판을 밟고 있지 않은것으로 처리
+				on_Block = 0;// 현재(ff로 구분) 밟고 있는 발판의 x값에 벗어나면 발판을 밟고 있지 않은것으로 처리
 			}
 		}
 	}

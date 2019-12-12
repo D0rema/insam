@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  */
 public class Stage extends JPanel implements Runnable {
 	/**stage number*/
-	public static int stage = 3;
+	public static int stage = 1;
 	/** variable for checking character direction */
 	public static boolean playerMove = false;
 	/** character position */
@@ -234,14 +234,29 @@ public class Stage extends JPanel implements Runnable {
 	public void setInit() {
 		gameSave.save();
 		if (stage == 1 || stage == 2) {
+			cnt = 0;
+			jp1 = 0;
+			jp2 = 0;
 			x = 20;
 			y = 436;
 		}
 		if (stage == 3) {
+			cnt = 0;
+			jp1 = 0;
+			jp2 = 0;
+			fload1 = 0;
+			fload2 = 0;
+			fload3 = 0;
+			fload4 = 0;
+			fload5 = 0;
+			reset=true;
 			x = 528;
 			y = 124;
 		}
 		if (stage == 4) {
+			cnt = 0;
+			jp1 = 0;
+			jp2 = 0;
 			x = 0;
 			y = 316;
 		}
@@ -277,7 +292,7 @@ public class Stage extends JPanel implements Runnable {
 					}
 
 					if (!itemCheck()) {
-						stage = 2;
+						stage = 3;
 						setInit();
 						cnt = 0;
 						jp1 = 0;
@@ -294,11 +309,12 @@ public class Stage extends JPanel implements Runnable {
 					}
 
 					if (!itemCheck()) {
-						stage = 3;
+						stage = 4;
 						setInit();
 						cnt = 0;
 						jp1 = 0;
 						jp2 = 0;
+					
 
 					}
 				}
@@ -306,11 +322,13 @@ public class Stage extends JPanel implements Runnable {
 					findLoadPuzzle.solvePuzzle();
 					humanCheckBoundary();
 					if (clearflag3 == true) {
-						stage = 4;
+						stage = 2;
+						notUp=1;
+						notDown=1;
+						notLeft=1;
+						notRight=0;
+						
 						setInit();
-						cnt = 0;
-						jp1 = 0;
-						jp2 = 0;
 
 						clearflag3 = false;
 					}
@@ -321,9 +339,6 @@ public class Stage extends JPanel implements Runnable {
 					if (clearflag4 == true) {
 						stage = 1;
 						setInit();
-						cnt = 0;
-						jp1 = 0;
-						jp2 = 0;
 
 					}
 				}
