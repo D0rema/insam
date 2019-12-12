@@ -38,78 +38,78 @@ public class Wall {
 	 */
 	public void onIwall() {
 		for (int i = 0; i < iceWall[4].length / 2; i++) {
-			if (CatStage.x == iceWall[4][(2 * i) + 0] && CatStage.y == iceWall[4][(2 * i) + 1]) {
-				CatStage.notUp = 1;
-				CatStage.notDown = 0;
-				CatStage.notLeft = 1;
-				CatStage.notRight = 0;
+			if (Stage.x == iceWall[4][(2 * i) + 0] && Stage.y == iceWall[4][(2 * i) + 1]) {
+				Stage.notUp = 1;
+				Stage.notDown = 0;
+				Stage.notLeft = 1;
+				Stage.notRight = 0;
 				return;
 			}
 		}
 		for (int i = 0; i < iceWall[5].length / 2; i++) {
-			if (CatStage.x == iceWall[5][(2 * i) + 0] && CatStage.y == iceWall[5][(2 * i) + 1]) {
-				CatStage.notUp = 1;
-				CatStage.notDown = 0;
-				CatStage.notLeft = 0;
-				CatStage.notRight = 1;
+			if (Stage.x == iceWall[5][(2 * i) + 0] && Stage.y == iceWall[5][(2 * i) + 1]) {
+				Stage.notUp = 1;
+				Stage.notDown = 0;
+				Stage.notLeft = 0;
+				Stage.notRight = 1;
 				return;
 			}
 		}
 		for (int i = 0; i < iceWall[6].length / 2; i++) {
-			if (CatStage.x == iceWall[6][(2 * i) + 0] && CatStage.y == iceWall[6][(2 * i) + 1]) {
-				CatStage.notUp = 0;
-				CatStage.notDown = 1;
-				CatStage.notLeft = 1;
-				CatStage.notRight = 0;
+			if (Stage.x == iceWall[6][(2 * i) + 0] && Stage.y == iceWall[6][(2 * i) + 1]) {
+				Stage.notUp = 0;
+				Stage.notDown = 1;
+				Stage.notLeft = 1;
+				Stage.notRight = 0;
 				return;
 			}
 		}
 		for (int i = 0; i < iceWall[7].length / 2; i++) {
-			if (CatStage.x == iceWall[7][(2 * i) + 0] && CatStage.y == iceWall[7][(2 * i) + 1]) {
-				CatStage.notUp = 0;
-				CatStage.notDown = 1;
-				CatStage.notLeft = 0;
-				CatStage.notRight = 1;
+			if (Stage.x == iceWall[7][(2 * i) + 0] && Stage.y == iceWall[7][(2 * i) + 1]) {
+				Stage.notUp = 0;
+				Stage.notDown = 1;
+				Stage.notLeft = 0;
+				Stage.notRight = 1;
 				return;
 			}
 		}
 		for (int i = 0; i < iceWall[0].length / 3; i++) {
-			if (CatStage.x > iceWall[0][(3 * i) + 0] && CatStage.x < iceWall[0][(3 * i) + 1]
-					&& CatStage.y == iceWall[0][(3 * i) + 2]) {
-				CatStage.notUp = 1;
-				CatStage.notDown = 0;
-				CatStage.notLeft = 0;
-				CatStage.notRight = 0;
+			if (Stage.x > iceWall[0][(3 * i) + 0] && Stage.x < iceWall[0][(3 * i) + 1]
+					&& Stage.y == iceWall[0][(3 * i) + 2]) {
+				Stage.notUp = 1;
+				Stage.notDown = 0;
+				Stage.notLeft = 0;
+				Stage.notRight = 0;
 				return;
 			}
 		}
 		for (int i = 0; i < iceWall[1].length / 3; i++) {
-			if (CatStage.x > iceWall[1][(3 * i) + 0] && CatStage.x < iceWall[1][(3 * i) + 1]
-					&& CatStage.y == iceWall[1][(3 * i) + 2]) {
-				CatStage.notUp = 0;
-				CatStage.notDown = 1;
-				CatStage.notLeft = 0;
-				CatStage.notRight = 0;
+			if (Stage.x > iceWall[1][(3 * i) + 0] && Stage.x < iceWall[1][(3 * i) + 1]
+					&& Stage.y == iceWall[1][(3 * i) + 2]) {
+				Stage.notUp = 0;
+				Stage.notDown = 1;
+				Stage.notLeft = 0;
+				Stage.notRight = 0;
 				return;
 			}
 		}
 		for (int i = 0; i < iceWall[2].length / 3; i++) {
-			if (CatStage.x == iceWall[2][(3 * i) + 0] && CatStage.y > iceWall[2][(3 * i) + 1]
-					&& CatStage.y < iceWall[2][(3 * i) + 2]) {
-				CatStage.notUp = 0;
-				CatStage.notDown = 0;
-				CatStage.notLeft = 1;
-				CatStage.notRight = 0;
+			if (Stage.x == iceWall[2][(3 * i) + 0] && Stage.y > iceWall[2][(3 * i) + 1]
+					&& Stage.y < iceWall[2][(3 * i) + 2]) {
+				Stage.notUp = 0;
+				Stage.notDown = 0;
+				Stage.notLeft = 1;
+				Stage.notRight = 0;
 				return;
 			}
 		}
 		for (int i = 0; i < iceWall[3].length / 3; i++) {
-			if (CatStage.x == iceWall[3][(3 * i) + 0] && CatStage.y > iceWall[3][(3 * i) + 1]
-					&& CatStage.y < iceWall[3][(3 * i) + 2]) {
-				CatStage.notUp = 0;
-				CatStage.notDown = 0;
-				CatStage.notLeft = 0;
-				CatStage.notRight = 1;
+			if (Stage.x == iceWall[3][(3 * i) + 0] && Stage.y > iceWall[3][(3 * i) + 1]
+					&& Stage.y < iceWall[3][(3 * i) + 2]) {
+				Stage.notUp = 0;
+				Stage.notDown = 0;
+				Stage.notLeft = 0;
+				Stage.notRight = 1;
 				return;
 			}
 		}

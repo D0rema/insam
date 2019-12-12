@@ -129,12 +129,12 @@ public class Block {
 	 */
 	public void is_bottom() { // 중력을 만들기 위한 함수
 		if (on_block == 0) { // 발판에 닿지 않을때는 항상 바닥은 472
-			CatStage.g_y = 520;
+			Stage.g_y = 520;
 		}
-		if (!CatStage.try_jump || Ladder.on_Ladder_Flag) { // 점프할때는 중력 적용 x
-			if (CatStage.y >= CatStage.g_y) { // g_y 발판일때 바뀔수 있기때문에 변수로 생성
+		if (!Stage.try_jump || Ladder.on_Ladder_Flag) { // 점프할때는 중력 적용 x
+			if (Stage.y >= Stage.g_y) { // g_y 발판일때 바뀔수 있기때문에 변수로 생성
 				on_bottom = 1; // 캐릭터가 바닥에 닿았을때 1
-			} else if (CatStage.y < CatStage.g_y && Ladder.on_Ladder_Flag) {
+			} else if (Stage.y < Stage.g_y && Ladder.on_Ladder_Flag) {
 				if (Ladder.using_Ladder)
 					on_bottom = 1;
 				else
@@ -144,7 +144,7 @@ public class Block {
 			}
 			if (on_bottom == 0) { // 바닥에 닿지 않았을때는 항상 떨어짐
 				Ladder.using_Ladder = false;
-				CatStage.y += 12;
+				Stage.y += 12;
 			}
 		}
 	}
@@ -155,9 +155,9 @@ public class Block {
 	 * @author JiSeongChoi
 	 */
 	public void on_Block() { // 발판일때 체크하는 함수
-		for (int i = 0; i < block_Count[CatStage.stage - 1]; i++) { // 모든 발판을 체크
-			if (blocks[CatStage.stage - 1][i][0] < CatStage.x && blocks[CatStage.stage - 1][i][1] > CatStage.x
-					&& blocks[CatStage.stage - 1][i][2] == CatStage.y) { // 현재 캐릭터의
+		for (int i = 0; i < block_Count[Stage.stage - 1]; i++) { // 모든 발판을 체크
+			if (blocks[Stage.stage - 1][i][0] < Stage.x && blocks[Stage.stage - 1][i][1] > Stage.x
+					&& blocks[Stage.stage - 1][i][2] == Stage.y) { // 현재 캐릭터의
 				// 좌표가 발판 좌표
 				// 안에 있는지 체크
 				// i로 모든 발판
@@ -165,9 +165,9 @@ public class Block {
 
 				on_block = 1; // 발판 좌표 안에 있으면 발판을 밟고 있을때 1
 				currentBlock = i; // 그때의 값을 저장해 아래에 사용
-				CatStage.g_y = blocks[CatStage.stage - 1][currentBlock][2]; // 현재 밝고있는 발판의 y값을 바닥으로 사용
-			} else if (blocks[CatStage.stage - 1][currentBlock][0] > CatStage.x
-					|| blocks[CatStage.stage - 1][currentBlock][1] < CatStage.x) {
+				Stage.g_y = blocks[Stage.stage - 1][currentBlock][2]; // 현재 밝고있는 발판의 y값을 바닥으로 사용
+			} else if (blocks[Stage.stage - 1][currentBlock][0] > Stage.x
+					|| blocks[Stage.stage - 1][currentBlock][1] < Stage.x) {
 				on_block = 0;// 현재(ff로 구분) 밟고 있는 발판의 x값에 벗어나면 발판을 밟고 있지 않은것으로 처리
 			}
 		}

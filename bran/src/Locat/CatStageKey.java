@@ -20,51 +20,51 @@ public class CatStageKey implements KeyListener {
 	public static void keyProcess() {
 		// 여기서는 단순 케릭터가 이동하는 좌표 말고도
 		// 케릭터의 움직임 여부및 방향을 체크 합니다.
-		CatStage.playerMove = false;
+		Stage.playerMove = false;
 
 		// up과 down은 사다리에서만 적용되도록
-		if (keyUp && CatStage.not_key != 1 && Ladder.on_Ladder_Flag) {
+		if (keyUp && Stage.not_key != 1 && Ladder.on_Ladder_Flag) {
 			Ladder.using_Ladder = true;
-			CatStage.playerMove = true;
-			CatStage.y -= 12;
-			if (CatStage.y == Ladder.y_Upper - 12)
+			Stage.playerMove = true;
+			Stage.y -= 12;
+			if (Stage.y == Ladder.y_Upper - 12)
 				Ladder.using_Ladder = false;
-			CatStage.moveStatus = 0;
+			Stage.moveStatus = 0;
 		}
 
-		if (keyDown && CatStage.not_key != 2 && Ladder.on_Ladder_Flag) {
+		if (keyDown && Stage.not_key != 2 && Ladder.on_Ladder_Flag) {
 			Ladder.using_Ladder = true;
-			if (CatStage.y < Ladder.y_Under)
-				CatStage.y += 12;
-			if (CatStage.y == Ladder.y_Under)
+			if (Stage.y < Ladder.y_Under)
+				Stage.y += 12;
+			if (Stage.y == Ladder.y_Under)
 				Ladder.using_Ladder = false;
-			CatStage.moveStatus = 0;
-			CatStage.playerMove = true;
+			Stage.moveStatus = 0;
+			Stage.playerMove = true;
 		}
 
-		if (keyLeft && CatStage.not_key != 3 && !Ladder.using_Ladder) {
-			CatStage.x -= 4;
-			CatStage.moveStatus = 3;
-			CatStage.playerMove = true;
+		if (keyLeft && Stage.not_key != 3 && !Ladder.using_Ladder) {
+			Stage.x -= 4;
+			Stage.moveStatus = 3;
+			Stage.playerMove = true;
 		}
 
-		if (keyRight && CatStage.not_key != 4 && !Ladder.using_Ladder) {
-			CatStage.x += 4;
-			CatStage.moveStatus = 1;
-			CatStage.playerMove = true;
+		if (keyRight && Stage.not_key != 4 && !Ladder.using_Ladder) {
+			Stage.x += 4;
+			Stage.moveStatus = 1;
+			Stage.playerMove = true;
 		}
 
 		if (jump && !Ladder.on_Ladder_Flag) {
 
 			// CatStage.moveStatus = 1;
-			CatStage.playerMove = true;
+			Stage.playerMove = true;
 
-			if (CatStage.cnt < CatStage.jp1) { // 카운트가 지정된 jp1만큼의 시간만 올라감
-				CatStage.y -= 12; // 속도를 정할수있음
+			if (Stage.cnt < Stage.jp1) { // 카운트가 지정된 jp1만큼의 시간만 올라감
+				Stage.y -= 12; // 속도를 정할수있음
 			}
-			if (CatStage.cnt > CatStage.jp1) { // 다 올라가면 아래 try_jump를 false시키면서 중력 적용
+			if (Stage.cnt > Stage.jp1) { // 다 올라가면 아래 try_jump를 false시키면서 중력 적용
 				jump = false;
-				CatStage.try_jump = false;
+				Stage.try_jump = false;
 			}
 		}
 
@@ -74,30 +74,30 @@ public class CatStageKey implements KeyListener {
 
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
-			if (CatStage.not_key != 3) {
+			if (Stage.not_key != 3) {
 				keyLeft = true;
 			}
 			break;
 		case KeyEvent.VK_RIGHT:
-			if (CatStage.not_key != 4) {
+			if (Stage.not_key != 4) {
 				keyRight = true;
 			}
 			break;
 		case KeyEvent.VK_UP:
-			if (CatStage.not_key != 1) {
+			if (Stage.not_key != 1) {
 				keyUp = true;
 			}
 			break;
 		case KeyEvent.VK_DOWN:
-			if (CatStage.not_key != 2) {
+			if (Stage.not_key != 2) {
 				keyDown = true;
 			}
 			break;
 		case KeyEvent.VK_SPACE:
-			if (CatStage.cnt > CatStage.jp2) {
-				CatStage.jp1 = CatStage.cnt + 8; // 점프키를 누르면 cnt가 20올라갈만큼 올라감
-				CatStage.jp2 = CatStage.cnt + 40;// 현재 미사용
-				CatStage.try_jump = true; // 중력을 미적용시킴
+			if (Stage.cnt > Stage.jp2) {
+				Stage.jp1 = Stage.cnt + 8; // 점프키를 누르면 cnt가 20올라갈만큼 올라감
+				Stage.jp2 = Stage.cnt + 40;// 현재 미사용
+				Stage.try_jump = true; // 중력을 미적용시킴
 				jump = true;
 				break;
 			}

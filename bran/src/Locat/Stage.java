@@ -5,7 +5,7 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
-public class CatStage extends JPanel implements Runnable {
+public class Stage extends JPanel implements Runnable {
 	/**stage number*/
 	public static int stage = 3;
 	/** variable for checking character direction */
@@ -66,7 +66,7 @@ public class CatStage extends JPanel implements Runnable {
 	 *
 	 * @author All
 	 */
-	public CatStage() {
+	public Stage() {
 		gameSave.save();
 		setSize(MainFrame.SCREEN_WIDTH, MainFrame.SCREEN_HEIGHT);
 		init();

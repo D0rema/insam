@@ -59,11 +59,11 @@ public class Ladder {
 	public void on_Ladder() {
 		
 		for (int i = 0; i < ladder_Count; i++) {
-			if (CatStage.x >= ladders[CatStage.stage-1][i][0] && CatStage.x <= ladders[CatStage.stage-1][i][1]
-					&& CatStage.y >= ladders[CatStage.stage-1][i][2] && CatStage.y <= ladders[CatStage.stage-1][i][3]) {
+			if (Stage.x >= ladders[Stage.stage-1][i][0] && Stage.x <= ladders[Stage.stage-1][i][1]
+					&& Stage.y >= ladders[Stage.stage-1][i][2] && Stage.y <= ladders[Stage.stage-1][i][3]) {
 				on_Ladder_Flag = true;
-				y_Upper = ladders[CatStage.stage-1][i][2];
-				y_Under = ladders[CatStage.stage-1][i][3];
+				y_Upper = ladders[Stage.stage-1][i][2];
+				y_Under = ladders[Stage.stage-1][i][3];
 				break;
 			} else {
 				on_Ladder_Flag = false;

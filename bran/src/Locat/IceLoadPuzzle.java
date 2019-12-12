@@ -16,145 +16,145 @@ public class IceLoadPuzzle {
 	 *  Sliding function when on ice
 	 */
 	public void slide() {
-		if(CatStage.x>800) {
-			CatStage.clearflag4=true;
+		if(Stage.x>800) {
+			Stage.clearflag4=true;
 		}
-		if (CatStage.x >= 60 && CatStage.x <= 568 && CatStage.y >= 60 && CatStage.y <= 508) {
-			if (CatStage.notUp == 1 && CatStage.notRight == 1) {
+		if (Stage.x >= 60 && Stage.x <= 568 && Stage.y >= 60 && Stage.y <= 508) {
+			if (Stage.notUp == 1 && Stage.notRight == 1) {
 
-				CatStage.sliding = false;
+				Stage.sliding = false;
 
-				if (CatStage.moveStatus == 2) {
-					if (CatStage.y < 508)
-						CatStage.y += 4;
-				} else if (CatStage.moveStatus == 3) {
-					if (CatStage.x > 60)
-						CatStage.x -= 4;
+				if (Stage.moveStatus == 2) {
+					if (Stage.y < 508)
+						Stage.y += 4;
+				} else if (Stage.moveStatus == 3) {
+					if (Stage.x > 60)
+						Stage.x -= 4;
 				} else
-					CatStage.sliding = true;
+					Stage.sliding = true;
 				return;
 			}
 
-			if (CatStage.notUp == 1 && CatStage.notLeft == 1) {
+			if (Stage.notUp == 1 && Stage.notLeft == 1) {
 
-				CatStage.sliding = false;
+				Stage.sliding = false;
 
-				if (CatStage.moveStatus == 1) {
-					if (CatStage.x < 568)
-						CatStage.x += 4;
-				} else if (CatStage.moveStatus == 2) {
-					if (CatStage.y < 508)
-						CatStage.y += 4;
+				if (Stage.moveStatus == 1) {
+					if (Stage.x < 568)
+						Stage.x += 4;
+				} else if (Stage.moveStatus == 2) {
+					if (Stage.y < 508)
+						Stage.y += 4;
 				} else
-					CatStage.sliding = true;
+					Stage.sliding = true;
 				return;
 			}
 
-			if (CatStage.notDown == 1 && CatStage.notRight == 1) {
+			if (Stage.notDown == 1 && Stage.notRight == 1) {
 
-				CatStage.sliding = false;
+				Stage.sliding = false;
 
-				if (CatStage.moveStatus == 1) {
-					if (CatStage.y > 60)
-						CatStage.y -= 4;
-				} else if (CatStage.moveStatus == 3) {
-					if (CatStage.x > 60)
-						CatStage.x -= 4;
+				if (Stage.moveStatus == 1) {
+					if (Stage.y > 60)
+						Stage.y -= 4;
+				} else if (Stage.moveStatus == 3) {
+					if (Stage.x > 60)
+						Stage.x -= 4;
 				} else
-					CatStage.sliding = true;
+					Stage.sliding = true;
 				return;
 			}
 
-			if (CatStage.notDown == 1 && CatStage.notLeft == 1) {
+			if (Stage.notDown == 1 && Stage.notLeft == 1) {
 
-				CatStage.sliding = false;
+				Stage.sliding = false;
 
-				if (CatStage.moveStatus == 0) {
-					if (CatStage.y > 60)
-						CatStage.y -= 4;
-				} else if (CatStage.moveStatus == 1) {
-					if (CatStage.x < 568)
-						CatStage.x += 4;
+				if (Stage.moveStatus == 0) {
+					if (Stage.y > 60)
+						Stage.y -= 4;
+				} else if (Stage.moveStatus == 1) {
+					if (Stage.x < 568)
+						Stage.x += 4;
 				} else
-					CatStage.sliding = true;
+					Stage.sliding = true;
 				return;
 			}
 
-			if (CatStage.notUp == 1) {
+			if (Stage.notUp == 1) {
 
-				CatStage.sliding = false;
+				Stage.sliding = false;
 
-				if (CatStage.moveStatus == 1) {
-					if (CatStage.x < 568)
-						CatStage.x += 4;
-					else if (CatStage.y == 120 && CatStage.x >= 568)
-						CatStage.x += 4;
-				} else if (CatStage.moveStatus == 2) {
-					if (CatStage.y < 508)
-						CatStage.y += 4;
-				} else if (CatStage.moveStatus == 3) {
-					if (CatStage.x > 60)
-						CatStage.x -= 4;
+				if (Stage.moveStatus == 1) {
+					if (Stage.x < 568)
+						Stage.x += 4;
+					else if (Stage.y == 120 && Stage.x >= 568)
+						Stage.x += 4;
+				} else if (Stage.moveStatus == 2) {
+					if (Stage.y < 508)
+						Stage.y += 4;
+				} else if (Stage.moveStatus == 3) {
+					if (Stage.x > 60)
+						Stage.x -= 4;
 				} else
-					CatStage.sliding = true;
+					Stage.sliding = true;
 				return;
 			}
 
-			if (CatStage.notDown == 1) {
+			if (Stage.notDown == 1) {
 
-				CatStage.sliding = false;
+				Stage.sliding = false;
 
-				if (CatStage.moveStatus == 0) {
-					if (CatStage.y > 60)
-						CatStage.y -= 4;
-				} else if (CatStage.moveStatus == 1) {
-					if (CatStage.x < 568)
-						CatStage.x += 4;
-				} else if (CatStage.moveStatus == 3) {
-					if (CatStage.x > 60)
-						CatStage.x -= 4;
+				if (Stage.moveStatus == 0) {
+					if (Stage.y > 60)
+						Stage.y -= 4;
+				} else if (Stage.moveStatus == 1) {
+					if (Stage.x < 568)
+						Stage.x += 4;
+				} else if (Stage.moveStatus == 3) {
+					if (Stage.x > 60)
+						Stage.x -= 4;
 				} else
-					CatStage.sliding = true;
+					Stage.sliding = true;
 				return;
 			}
 
-			if (CatStage.notRight == 1) {
+			if (Stage.notRight == 1) {
 
-				CatStage.sliding = false;
+				Stage.sliding = false;
 
-				if (CatStage.moveStatus == 0) {
-					if (CatStage.y > 60)
-						CatStage.y -= 4;
-				} else if (CatStage.moveStatus == 2) {
-					if (CatStage.y < 508)
-						CatStage.y += 4;
-				} else if (CatStage.moveStatus == 3) {
-					if (CatStage.x > 60)
-						CatStage.x -= 4;
+				if (Stage.moveStatus == 0) {
+					if (Stage.y > 60)
+						Stage.y -= 4;
+				} else if (Stage.moveStatus == 2) {
+					if (Stage.y < 508)
+						Stage.y += 4;
+				} else if (Stage.moveStatus == 3) {
+					if (Stage.x > 60)
+						Stage.x -= 4;
 				} else
-					CatStage.sliding = true;
+					Stage.sliding = true;
 				return;
 			}
 
-			if (CatStage.notLeft == 1) {
+			if (Stage.notLeft == 1) {
 
-				CatStage.sliding = false;
+				Stage.sliding = false;
 
-				if (CatStage.moveStatus == 0) {
-					if (CatStage.y > 60)
-						CatStage.y -= 4;
-				} else if (CatStage.moveStatus == 1) {
-					if (CatStage.x < 568)
-						CatStage.x += 4;
-				} else if (CatStage.moveStatus == 2) {
-					if (CatStage.y < 508)
-						CatStage.y += 4;
+				if (Stage.moveStatus == 0) {
+					if (Stage.y > 60)
+						Stage.y -= 4;
+				} else if (Stage.moveStatus == 1) {
+					if (Stage.x < 568)
+						Stage.x += 4;
+				} else if (Stage.moveStatus == 2) {
+					if (Stage.y < 508)
+						Stage.y += 4;
 				} else
-					CatStage.sliding = true;
+					Stage.sliding = true;
 				return;
 			}
-		} else if (CatStage.y == 120 && CatStage.x >= 568)
-			CatStage.x += 4;
+		} else if (Stage.y == 120 && Stage.x >= 568)
+			Stage.x += 4;
 	}
 
 }

@@ -102,8 +102,8 @@ public class Menu extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// 게임 시작이벤트 화면 전환
-				MainFrame.currentStage = 1;
-				Main.mainFrame.changePanel(MainFrame.currentStage); // 새로운 창으로 전환
+				MainFrame.panelNumber = 1;
+				Main.mainFrame.changePanel(MainFrame.panelNumber); // 새로운 창으로 전환
 			}
 		});
 		add(startButton);

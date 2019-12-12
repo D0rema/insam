@@ -18,30 +18,30 @@ public class HumanStageKey implements KeyListener {
 	 */
 	public static void keyProcess() {
 
-		CatStage.playerMove = false;
+		Stage.playerMove = false;
 
-		if (keyUp && CatStage.notUp != 1) {
-			CatStage.playerMove = true;
-			CatStage.y -= 4;
-			CatStage.moveStatus = 0;
+		if (keyUp && Stage.notUp != 1) {
+			Stage.playerMove = true;
+			Stage.y -= 4;
+			Stage.moveStatus = 0;
 		}
 
-		if (keyDown && CatStage.notDown != 1) {
-			CatStage.y += 4;
-			CatStage.moveStatus = 2;
-			CatStage.playerMove = true;
+		if (keyDown && Stage.notDown != 1) {
+			Stage.y += 4;
+			Stage.moveStatus = 2;
+			Stage.playerMove = true;
 		}
 
-		if (keyLeft && CatStage.notLeft != 1) {
-			CatStage.x -= 4;
-			CatStage.moveStatus = 3;
-			CatStage.playerMove = true;
+		if (keyLeft && Stage.notLeft != 1) {
+			Stage.x -= 4;
+			Stage.moveStatus = 3;
+			Stage.playerMove = true;
 		}
 
-		if (keyRight && CatStage.notRight != 1) {
-			CatStage.x += 4;
-			CatStage.moveStatus = 1;
-			CatStage.playerMove = true;
+		if (keyRight && Stage.notRight != 1) {
+			Stage.x += 4;
+			Stage.moveStatus = 1;
+			Stage.playerMove = true;
 		}
 
 	}
@@ -51,30 +51,30 @@ public class HumanStageKey implements KeyListener {
 	 * 
 	 */
 	public void keyPressed(KeyEvent e) {
-		if(CatStage.sliding) {
+		if(Stage.sliding) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_LEFT:
-				if (CatStage.notLeft != 1) {
+				if (Stage.notLeft != 1) {
 					keyLeft = true;
 				}
 				break;
 			case KeyEvent.VK_RIGHT:
-				if (CatStage.notRight != 1) {
+				if (Stage.notRight != 1) {
 					keyRight = true;
 				}
 				break;
 			case KeyEvent.VK_UP:
-				if (CatStage.notUp != 1) {
+				if (Stage.notUp != 1) {
 					keyUp = true;
 				}
 				break;
 			case KeyEvent.VK_DOWN:
-				if (CatStage.notDown != 1) {
+				if (Stage.notDown != 1) {
 					keyDown = true;
 				}
 				break;
 			case KeyEvent.VK_SPACE:
-				CatStage.reset = true;
+				Stage.reset = true;
 				break;
 			}
 		}
@@ -99,7 +99,7 @@ public class HumanStageKey implements KeyListener {
 				keyDown = false;
 			break;
 		case KeyEvent.VK_SPACE:
-			CatStage.reset = false;
+			Stage.reset = false;
 			break;
 		}
 	}

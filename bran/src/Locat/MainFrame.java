@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class MainFrame extends JFrame {
 	public static final int SCREEN_WIDTH = 800;
 	public static final int SCREEN_HEIGHT = 600;
-	public static int currentStage;
+	public static int panelNumber;
 
 	Menu menu = new Menu();
 
@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setContentPane(menu);
-		currentStage = 0;
+		panelNumber = 0;
 
 		setVisible(true); // 창 보일 수 있게 설정
 	}
@@ -39,12 +39,12 @@ public class MainFrame extends JFrame {
 			repaint();
 			
 			
-			CatStage.clearflag4=false;
+			Stage.clearflag4=false;
 			break;
 		}
 		case 1: {
 			getContentPane().removeAll();
-			setContentPane(new CatStage());
+			setContentPane(new Stage());
 			getContentPane().requestFocus();
 			invalidate();
 			repaint();

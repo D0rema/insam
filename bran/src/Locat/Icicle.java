@@ -39,19 +39,19 @@ public class Icicle extends Obstacle {
 	 * Change Icicle's coordinates
 	 */
 	public void crush() {
-		if ((ix - 30 <= CatStage.x && ix + 15 >= CatStage.x)
-				&& (iy - 20 <= CatStage.y && iy + 10 >= CatStage.y)) {
-			if (CatStage.x <= ix)
-				CatStage.x = CatStage.x - 50;
+		if ((ix - 30 <= Stage.x && ix + 15 >= Stage.x)
+				&& (iy - 20 <= Stage.y && iy + 10 >= Stage.y)) {
+			if (Stage.x <= ix)
+				Stage.x = Stage.x - 50;
 			else
-				CatStage.x = CatStage.x + 50;
+				Stage.x = Stage.x + 50;
 
-			if (CatStage.life[0])
-				CatStage.life[0] = false;
-			else if (CatStage.life[1])
-				CatStage.life[1] = false;
+			if (Stage.life[0])
+				Stage.life[0] = false;
+			else if (Stage.life[1])
+				Stage.life[1] = false;
 			else
-				CatStage.life[2] = false;
+				Stage.life[2] = false;
 		}
 		
 		

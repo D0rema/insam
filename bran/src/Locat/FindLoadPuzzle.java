@@ -52,16 +52,16 @@ public class FindLoadPuzzle {
 	public void findLoad() {
 
 		for (int i = 0; i < 10; i++) {
-			if (CatStage.x > mark[i][0] && CatStage.x < mark[i][1] && CatStage.y > mark[i][2]
-					&& CatStage.y < mark[i][3]) {
-				CatStage.charLocation = i;
-				if (CatStage.charLocation != temp) {
-					CatStage.fload2 = CatStage.fload1;
-					CatStage.fload1 = i + 1;
+			if (Stage.x > mark[i][0] && Stage.x < mark[i][1] && Stage.y > mark[i][2]
+					&& Stage.y < mark[i][3]) {
+				Stage.charLocation = i;
+				if (Stage.charLocation != temp) {
+					Stage.fload2 = Stage.fload1;
+					Stage.fload1 = i + 1;
 				}
-				temp = CatStage.charLocation;
-				if (CatStage.fload2 != CatStage.fload1) {
-					CatStage.fload3 = CatStage.fload2 * 10 + CatStage.fload1;
+				temp = Stage.charLocation;
+				if (Stage.fload2 != Stage.fload1) {
+					Stage.fload3 = Stage.fload2 * 10 + Stage.fload1;
 				}
 			}
 		}
@@ -71,79 +71,79 @@ public class FindLoadPuzzle {
 	 * This function resets when the mark passes through a non-road.
 	 */
 	public void findLoadReset() {
-		if (CatStage.fload1 == 1) {
-			if (CatStage.fload2 == 7 || CatStage.fload2 == 2 || CatStage.fload2 == 3
-					|| CatStage.fload2 == 0) {
+		if (Stage.fload1 == 1) {
+			if (Stage.fload2 == 7 || Stage.fload2 == 2 || Stage.fload2 == 3
+					|| Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 2) {
-			if (CatStage.fload2 == 1 || CatStage.fload2 == 4 || CatStage.fload2 == 5
-					|| CatStage.fload2 == 0) {
+		if (Stage.fload1 == 2) {
+			if (Stage.fload2 == 1 || Stage.fload2 == 4 || Stage.fload2 == 5
+					|| Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 3) {
-			if (CatStage.fload2 == 1 || CatStage.fload2 == 4 || CatStage.fload2 == 0) {
+		if (Stage.fload1 == 3) {
+			if (Stage.fload2 == 1 || Stage.fload2 == 4 || Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 4) {
-			if (CatStage.fload2 == 2 || CatStage.fload2 == 3 || CatStage.fload2 == 5 || CatStage.fload2 == 8
-					|| CatStage.fload2 == 0) {
+		if (Stage.fload1 == 4) {
+			if (Stage.fload2 == 2 || Stage.fload2 == 3 || Stage.fload2 == 5 || Stage.fload2 == 8
+					|| Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 5) {
-			if (CatStage.fload2 == 2 || CatStage.fload2 == 4 || CatStage.fload2 == 6 || CatStage.fload2 == 9
-					|| CatStage.fload2 == 0) {
+		if (Stage.fload1 == 5) {
+			if (Stage.fload2 == 2 || Stage.fload2 == 4 || Stage.fload2 == 6 || Stage.fload2 == 9
+					|| Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 6) {
-			if (CatStage.fload2 == 5 || CatStage.fload2 == 10 || CatStage.fload2 == 0) {
+		if (Stage.fload1 == 6) {
+			if (Stage.fload2 == 5 || Stage.fload2 == 10 || Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 7) {
-			if (CatStage.fload2 == 1 || CatStage.fload2 == 8 || CatStage.fload2 == 0) {
+		if (Stage.fload1 == 7) {
+			if (Stage.fload2 == 1 || Stage.fload2 == 8 || Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 8) {
-			if (CatStage.fload2 == 4 || CatStage.fload2 == 7 || CatStage.fload2 == 9
-					|| CatStage.fload2 == 10 || CatStage.fload2 == 0) {
+		if (Stage.fload1 == 8) {
+			if (Stage.fload2 == 4 || Stage.fload2 == 7 || Stage.fload2 == 9
+					|| Stage.fload2 == 10 || Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 9) {
-			if (CatStage.fload2 == 5 || CatStage.fload2 == 8 || CatStage.fload2 == 0) {
+		if (Stage.fload1 == 9) {
+			if (Stage.fload2 == 5 || Stage.fload2 == 8 || Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
-		if (CatStage.fload1 == 10) {
-			if (CatStage.fload2 == 6 || CatStage.fload2 == 8 || CatStage.fload2 == 0) {
+		if (Stage.fload1 == 10) {
+			if (Stage.fload2 == 6 || Stage.fload2 == 8 || Stage.fload2 == 0) {
 
 			} else {
-				CatStage.reset = true;
+				Stage.reset = true;
 			}
 		}
 	}

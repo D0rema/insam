@@ -15,7 +15,7 @@ public class gameSave {
 			// 파일에 문자열을 쓴다.
 			// 하지만 이미 파일이 존재하면 모든 내용을 삭제하고 그위에 덮어쓴다
 			FileWriter fw = new FileWriter(file);
-			fw.write(CatStage.stage); // 여기다 변수넣는데 char로
+			fw.write(Stage.stage); // 여기다 변수넣는데 char로
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class gameSave {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		CatStage.stage=savedstage;
+		Stage.stage=savedstage;
 		return 1;
 	}
 

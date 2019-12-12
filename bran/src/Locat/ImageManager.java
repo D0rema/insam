@@ -58,7 +58,7 @@ public class ImageManager {
 
 		
 		gc = buffimg.getGraphics();
-		switch(CatStage.stage) {
+		switch(Stage.stage) {
 		case 1:{
 			paintStage1(Frame);
 			break;
@@ -94,9 +94,9 @@ public class ImageManager {
 		drawItem(Frame, 740, 340, 3);
 		drawDog(Frame, st1_Dog1.ox, st1_Dog1.oy, st1_Dog1);
 		drawDog(Frame, st1_Dog2.ox, st1_Dog2.oy, st1_Dog2);
-		drawLife(Frame, CatStage.life[0], 740, 30);
-		drawLife(Frame, CatStage.life[1], 695, 30);
-		drawLife(Frame, CatStage.life[2], 650, 30);
+		drawLife(Frame, Stage.life[0], 740, 30);
+		drawLife(Frame, Stage.life[1], 695, 30);
+		drawLife(Frame, Stage.life[2], 650, 30);
 	}
 	
 	public void paintStage2(ImageObserver Frame) {
@@ -115,9 +115,9 @@ public class ImageManager {
 		drawIcicle(Frame, icicle2.ix, icicle2.iy, icicle2);
 		drawIcicle(Frame, icicle3.ix, icicle3.iy, icicle3);
 		drawIcicle(Frame, icicle4.ix, icicle4.iy, icicle4);
-		drawLife(Frame, CatStage.life[0], 740, 30);
-		drawLife(Frame, CatStage.life[1], 695, 30);
-		drawLife(Frame, CatStage.life[2], 650, 30);
+		drawLife(Frame, Stage.life[0], 740, 30);
+		drawLife(Frame, Stage.life[1], 695, 30);
+		drawLife(Frame, Stage.life[2], 650, 30);
 	}
 
 	
@@ -131,25 +131,25 @@ public class ImageManager {
 
 	public void DrawImg(ImageObserver Frame) {
 		gc.setFont(new Font("Default", Font.BOLD, 20));
-		gc.drawString(Integer.toString(CatStage.cnt), 50, 50);
-		gc.drawString(Integer.toString((CatStage.playerMove) ? 1 : 0), 200, 50);
-		gc.drawString(Integer.toString(CatStage.x), 350, 50);
-		gc.drawString(Integer.toString(CatStage.y), 500, 50);
-		gc.drawString(Integer.toString(CatStage.jp1), 350, 100);
-		gc.drawString(Integer.toString(CatStage.char_lo), 500, 100);
-		gc.drawString(Integer.toString(CatStage.fload1),350, 150);
-		gc.drawString(Integer.toString(CatStage.fload2),400, 150);
-		gc.drawString(Integer.toString(CatStage.fload3),450, 150);
-		gc.drawString(Integer.toString(CatStage.fload4),500, 150);
+		gc.drawString(Integer.toString(Stage.cnt), 50, 50);
+		gc.drawString(Integer.toString((Stage.playerMove) ? 1 : 0), 200, 50);
+		gc.drawString(Integer.toString(Stage.x), 350, 50);
+		gc.drawString(Integer.toString(Stage.y), 500, 50);
+		gc.drawString(Integer.toString(Stage.jp1), 350, 100);
+		gc.drawString(Integer.toString(Stage.char_lo), 500, 100);
+		gc.drawString(Integer.toString(Stage.fload1),350, 150);
+		gc.drawString(Integer.toString(Stage.fload2),400, 150);
+		gc.drawString(Integer.toString(Stage.fload3),450, 150);
+		gc.drawString(Integer.toString(Stage.fload4),500, 150);
 
 		// 위는 단순히 무한루프 적용여부와 케릭터 방향 체크를 위해
 		// 눈으로 보면서 테스트할 용도로 쓰이는 텍스트 표출입니다.
-		if(CatStage.stage==1||CatStage.stage==2) {
-		MoveImage(img, CatStage.x, CatStage.y, 50, 75, Frame);
+		if(Stage.stage==1||Stage.stage==2) {
+		MoveImage(img, Stage.x, Stage.y, 50, 75, Frame);
 	// 케릭터를 걸어가게 만들기 위해 추가로 만든 메소드 입니다.
 		}
-		if(CatStage.stage==3||CatStage.stage==4) {
-			MoveImage(img2, CatStage.x, CatStage.y, 50, 75, Frame);
+		if(Stage.stage==3||Stage.stage==4) {
+			MoveImage(img2, Stage.x, Stage.y, 50, 75, Frame);
 		}
 
 	}
@@ -162,31 +162,31 @@ public class ImageManager {
 		gc.setClip(x, y, width, height);
 		// 현재 좌표에서 케릭터의 크기 만큼 이미지를 잘라 그립니다.
 
-		if (CatStage.playerMove) { // 케릭터의 움직임 여부를 판단합니다.
-			if (CatStage.cnt / 10 % 4 == 0) {
-				gc.drawImage(img, x - (width * 0), y - (height * CatStage.moveStatus), Frame);
+		if (Stage.playerMove) { // 케릭터의 움직임 여부를 판단합니다.
+			if (Stage.cnt / 10 % 4 == 0) {
+				gc.drawImage(img, x - (width * 0), y - (height * Stage.moveStatus), Frame);
 
-			} else if (CatStage.cnt / 10 % 4 == 1) {
-				gc.drawImage(img, x - (width * 1), y - (height * CatStage.moveStatus), Frame);
+			} else if (Stage.cnt / 10 % 4 == 1) {
+				gc.drawImage(img, x - (width * 1), y - (height * Stage.moveStatus), Frame);
 
-			} else if (CatStage.cnt / 10 % 4 == 2) {
-				gc.drawImage(img, x - (width * 2), y - (height * CatStage.moveStatus), Frame);
+			} else if (Stage.cnt / 10 % 4 == 2) {
+				gc.drawImage(img, x - (width * 2), y - (height * Stage.moveStatus), Frame);
 
-			} else if (CatStage.cnt / 10 % 4 == 3) {
-				gc.drawImage(img, x - (width * 1), y - (height * CatStage.moveStatus), Frame);
+			} else if (Stage.cnt / 10 % 4 == 3) {
+				gc.drawImage(img, x - (width * 1), y - (height * Stage.moveStatus), Frame);
 			}
 			// 케릭터의 방향에 따라 걸어가는 모션을 취하는
 			// 케릭터 이미지를 시간차를 이용해 순차적으로 그립니다.
 
 		} else {
-			gc.drawImage(img, x - (width * 1), y - (height * CatStage.moveStatus), Frame);
+			gc.drawImage(img, x - (width * 1), y - (height * Stage.moveStatus), Frame);
 			// 케릭터가 움직이지 않으면 정지한 케릭터를 그립니다.
 
 		}
 	}
 
 	public void draw_Background(ImageObserver Frame) {
-		map = new ImageIcon(getClass().getClassLoader().getResource("images/stage"+CatStage.stage+".png")).getImage();
+		map = new ImageIcon(getClass().getClassLoader().getResource("images/stage"+Stage.stage+".png")).getImage();
 		gc.clearRect(0, 0, 800, 600);
 		gc.drawImage(map, 0, 0, Frame);
 	}
@@ -228,10 +228,10 @@ public class ImageManager {
 	 * @param ckindex int Variable for identifying each item.
 	 */
 	public void drawItem(ImageObserver Frame, int cx, int cy, int ckindex) {
-		if ((cx - 15 <= CatStage.x && cx + 15 >= CatStage.x) && (cy - 15 <= CatStage.y && cy + 15 >= CatStage.y)) {
-			CatStage.item[CatStage.stage-1][ckindex] = false;
+		if ((cx - 15 <= Stage.x && cx + 15 >= Stage.x) && (cy - 15 <= Stage.y && cy + 15 >= Stage.y)) {
+			Stage.item[Stage.stage-1][ckindex] = false;
 		}
-		if (CatStage.item[CatStage.stage-1][ckindex] == true) {
+		if (Stage.item[Stage.stage-1][ckindex] == true) {
 			gc.drawImage(check, cx, cy, Frame);
 		}
 	}
@@ -267,112 +267,112 @@ public class ImageManager {
 		// if(CatStage.ckmark1==true) {
 
 		// gc.drawImage(mark,135,105,Frame);
-		if (CatStage.fload3 != ftemp) {
-			CatStage.fload5 = CatStage.fload4;
-			CatStage.fload4 = CatStage.fload3;
+		if (Stage.fload3 != ftemp) {
+			Stage.fload5 = Stage.fload4;
+			Stage.fload4 = Stage.fload3;
 		}
-		ftemp = CatStage.fload3;
+		ftemp = Stage.fload3;
 
-		if (CatStage.fload3 == 17 || CatStage.fload3 == 71) {
+		if (Stage.fload3 == 17 || Stage.fload3 == 71) {
 			m[0] = 1;
 		}
-		if (CatStage.fload5 == 17 || CatStage.fload5 == 71) {
+		if (Stage.fload5 == 17 || Stage.fload5 == 71) {
 			c[0] = 17;
 			c[1] = 71;
 		}
 
-		if (CatStage.fload3 == 12 || CatStage.fload3 == 21) {
+		if (Stage.fload3 == 12 || Stage.fload3 == 21) {
 			m[1] = 1;
 		}
-		if (CatStage.fload5 == 12 || CatStage.fload5 == 21) {
+		if (Stage.fload5 == 12 || Stage.fload5 == 21) {
 			c[2] = 12;
 			c[3] = 21;
 		}
-		if (CatStage.fload3 == 13 || CatStage.fload3 == 31) {
+		if (Stage.fload3 == 13 || Stage.fload3 == 31) {
 			m[2] = 1;
 
 		}
-		if (CatStage.fload5 == 13 || CatStage.fload5 == 31) {
+		if (Stage.fload5 == 13 || Stage.fload5 == 31) {
 			c[4] = 13;
 			c[5] = 31;
 		}
-		if (CatStage.fload3 == 24 || CatStage.fload3 == 42) {
+		if (Stage.fload3 == 24 || Stage.fload3 == 42) {
 
 			m[3] = 1;
 
 		}
-		if (CatStage.fload5 == 24 || CatStage.fload5 == 42) {
+		if (Stage.fload5 == 24 || Stage.fload5 == 42) {
 			c[6] = 24;
 			c[7] = 42;
 		}
-		if (CatStage.fload3 == 25 || CatStage.fload3 == 52) {
+		if (Stage.fload3 == 25 || Stage.fload3 == 52) {
 
 			m[4] = 1;
 		}
-		if (CatStage.fload5 == 25 || CatStage.fload5 == 52) {
+		if (Stage.fload5 == 25 || Stage.fload5 == 52) {
 			c[8] = 25;
 			c[9] = 52;
 		}
-		if (CatStage.fload3 == 34 || CatStage.fload3 == 43) {
+		if (Stage.fload3 == 34 || Stage.fload3 == 43) {
 			m[5] = 1;
 		}
-		if (CatStage.fload5 == 34 || CatStage.fload5 == 43) {
+		if (Stage.fload5 == 34 || Stage.fload5 == 43) {
 			c[10] = 34;
 			c[11] = 43;
 		}
-		if (CatStage.fload3 == 45 || CatStage.fload3 == 54) {
+		if (Stage.fload3 == 45 || Stage.fload3 == 54) {
 			m[6] = 1;
 		}
-		if (CatStage.fload5 == 45 || CatStage.fload5 == 54) {
+		if (Stage.fload5 == 45 || Stage.fload5 == 54) {
 			c[12] = 45;
 			c[13] = 54;
 		}
-		if (CatStage.fload3 == 56 || CatStage.fload3 == 65) {
+		if (Stage.fload3 == 56 || Stage.fload3 == 65) {
 			m[7] = 1;
 		}
-		if (CatStage.fload5 == 56 || CatStage.fload5 == 65) {
+		if (Stage.fload5 == 56 || Stage.fload5 == 65) {
 			c[14] = 56;
 			c[15] = 65;
 		}
-		if (CatStage.fload3 == 48 || CatStage.fload3 == 84) {
+		if (Stage.fload3 == 48 || Stage.fload3 == 84) {
 			m[8] = 1;
 		}
-		if (CatStage.fload5 == 48 || CatStage.fload5 == 84) {
+		if (Stage.fload5 == 48 || Stage.fload5 == 84) {
 			c[16] = 48;
 			c[17] = 84;
 		}
-		if (CatStage.fload3 == 59 || CatStage.fload3 == 95) {
+		if (Stage.fload3 == 59 || Stage.fload3 == 95) {
 			m[9] = 1;
 		}
-		if (CatStage.fload5 == 59 || CatStage.fload5 == 95) {
+		if (Stage.fload5 == 59 || Stage.fload5 == 95) {
 			c[18] = 59;
 			c[19] = 95;
 		}
-		if (CatStage.fload3 == 70 || CatStage.fload3 == 106) {
+		if (Stage.fload3 == 70 || Stage.fload3 == 106) {
 			m[10] = 1;
 		}
-		if (CatStage.fload5 == 70 || CatStage.fload5 == 106) {
+		if (Stage.fload5 == 70 || Stage.fload5 == 106) {
 			c[20] = 106;
 			c[21] = 70;
 		}
-		if (CatStage.fload3 == 78 || CatStage.fload3 == 87) {
+		if (Stage.fload3 == 78 || Stage.fload3 == 87) {
 			m[11] = 1;
 		}
-		if (CatStage.fload5 == 78 || CatStage.fload5 == 87) {
+		if (Stage.fload5 == 78 || Stage.fload5 == 87) {
 			c[22] = 78;
 			c[23] = 87;
 		}
-		if (CatStage.fload3 == 89 || CatStage.fload3 == 98) {
+		if (Stage.fload3 == 89 || Stage.fload3 == 98) {
 			m[12] = 1;
 		}
-		if (CatStage.fload5 == 89 || CatStage.fload5 == 98) {
+		if (Stage.fload5 == 89 || Stage.fload5 == 98) {
 			c[24] = 89;
 			c[25] = 98;
 		}
-		if (CatStage.fload3 == 90 || CatStage.fload3 == 108) {
+		if (Stage.fload3 == 90 || Stage.fload3 == 108) {
 			m[13] = 1;
 		}
-		if (CatStage.fload5 == 90 || CatStage.fload5 == 108) {
+		if (Stage.fload5 == 90 || Stage.fload5 == 108) {
 			c[26] = 90;
 			c[27] = 108;
 		}
@@ -385,8 +385,8 @@ public class ImageManager {
 	 */
 	public void checkReset() {
 		for (int i = 0; i < 28; i++) {
-			if (c[i] == CatStage.fload3) {
-				CatStage.reset = true;
+			if (c[i] == Stage.fload3) {
+				Stage.reset = true;
 			}
 		}
 	}
@@ -401,7 +401,7 @@ public class ImageManager {
 			for(int i =0;i<14;i++) {
 				m[i]=0;
 			}
-			CatStage.clearflag3=true;
+			Stage.clearflag3=true;
 
 			System.out.println("clear");
 		}
@@ -412,23 +412,23 @@ public class ImageManager {
 	 * 
 	 */
 	public void resetMark() {
-		if (CatStage.reset == true) {
+		if (Stage.reset == true) {
 			for (int i = 0; i < 14; i++) {		
 				m[i] = 0;
 			}
 			
-			CatStage.fload1 = 0;
-			CatStage.fload2 = 0;
-			CatStage.fload3 = 0;
-			CatStage.fload4 = 0;
-			CatStage.fload5 = 0;
+			Stage.fload1 = 0;
+			Stage.fload2 = 0;
+			Stage.fload3 = 0;
+			Stage.fload4 = 0;
+			Stage.fload5 = 0;
 			for (int i = 0; i < 28; i++) {
 				c[i] = 999;
 			}
 			System.out.println("reset");
-			CatStage.x = 528;
-			CatStage.y = 124;
-			CatStage.reset = false;
+			Stage.x = 528;
+			Stage.y = 124;
+			Stage.reset = false;
 		}
 	}
 
