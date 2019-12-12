@@ -14,7 +14,11 @@ import javax.swing.JPanel;
  */
 public class Stage extends JPanel implements Runnable {
 	/**stage number*/
+<<<<<<< HEAD:project_final/src/Locat/Stage.java
 	public static int stage = 1;
+=======
+	public static int stage = 3;
+>>>>>>> 553e96d4d6aaaf4c03d4758c3b9df9ec5daff82a:bran/src/Locat/CatStage.java
 	/** variable for checking character direction */
 	public static boolean playerMove = false;
 	/** character position */
@@ -31,7 +35,11 @@ public class Stage extends JPanel implements Runnable {
 	public static boolean try_jump = false;
 	/** status of items */
 	public static boolean[][] item = { { true, true, true, true }, { true, true, true, true, true, true } };
+<<<<<<< HEAD:project_final/src/Locat/Stage.java
 	/** -------------------------------- */
+=======
+	/** findloadpuzzle current mark location */
+>>>>>>> 553e96d4d6aaaf4c03d4758c3b9df9ec5daff82a:bran/src/Locat/CatStage.java
 	public static int charLocation = 0;
 	/** status of life */
 	public static boolean[] life = { true, true, true };
